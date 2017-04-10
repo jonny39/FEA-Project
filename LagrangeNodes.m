@@ -13,10 +13,10 @@ stepj = N/(nny-1);
 Node = zeros(nnx*nny,2);
 
 for j = 1:nny
-    yj = j*stepj;
+    yj = (j-1)*stepj;
     for i = 1:nnx
-        xi = i*stepi;
-        Node(j*nnx + i,:) = [xi,yj];
+        xi = (i-1)*stepi;
+        Node((j-1)*nnx + i,:) = [xi,yj];
     end
 end
 
