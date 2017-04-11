@@ -5,7 +5,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function N = N_(xi, n, n_f):
+function N = N_(xi, n, n_f)
     if n_f == 2
         if n == 1
 			N = (1.-xi)/2.
@@ -15,7 +15,7 @@ function N = N_(xi, n, n_f):
 	end		
 end
 
-function dN_dxi = dN_dxi_(xi, n, n_f):
+function dN_dxi = dN_dxi_(xi, n, n_f)
     if n_f == 2
         if n == 1
 			dN_dxi = -0.5;
@@ -25,10 +25,10 @@ function dN_dxi = dN_dxi_(xi, n, n_f):
 	end
 end
 
-function N, dN_dxi, dN_deta, J = LocalParent(xi, eta, n_f, n_int, dim)
-	N = zeros(n_f, n_int, d)
-    dN_dxi = zeros(n_f, n_int)
-	dN_deta = zeros(n_f, n_int)
+function [N, dN_dxi, dN_deta, J] = LocalParent(xi, eta, n_f, n_int, dim)
+	N = zeros(n_f, n_int, d);
+    dN_dxi = zeros(n_f, n_int);
+	dN_deta = zeros(n_f, n_int);
 	for i = 1:n_int
 		for a = 1:n_f
 			for d = 1:dim
@@ -79,7 +79,7 @@ function detJ = detJ_(x_a, y_a, dN_dxi, dN_deta, n_f, i)
 	- dx_dxi_(y_a, dN_dxi(:, i), n_f, n_int)*dx_dxi(x_a, dN_deta(:, i), n_f, n_int);
 end
 
-function detJ, dN_dx, dN_dy = GlobalShape(x_a, y_a, dN_dxi, dN_deta, n_f, n_int, i)
+function [detJ, dN_dx, dN_dy] = GlobalShape(x_a, y_a, dN_dxi, dN_deta, n_f, n_int)
 	detJ = zeros(n_int, 1);
 	dN_dx = zeros(n_f, n_int);
 	dN_dy = zeros(n_f, n_int);
