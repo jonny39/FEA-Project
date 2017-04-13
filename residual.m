@@ -20,7 +20,7 @@ for e = 1:length(mesh)
 		bf = getBodyForce(x);
 		
 		for a = 1:n_en
-			Ba = getB(a, dN_dx, dN_dy);
+			[Ba,~] = BandStrain(a, dN_dx, dN_dy);
 			for i = 1:n_dof
 				r = a*n_dof + i;
 				r_e(r) = r_e(r) + (bf(i)*N(a)-Ba'*sigma)*wts(igpt)*detJ;
