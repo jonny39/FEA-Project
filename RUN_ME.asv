@@ -1,0 +1,14 @@
+% 2 Dimensional FEA code
+% solves for strains and displacements
+clear all
+format compact
+
+%convergence tolerance
+epsilon = 1e-12;
+
+%define mesh
+%for radial nodes, n is 
+%for rectangular nodes, n is 
+n = 10;
+m = 10;
+he = 1/n;
