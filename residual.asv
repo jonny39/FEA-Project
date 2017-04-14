@@ -1,11 +1,11 @@
-function [R] = residual(LM, mesh, d, E, nu, n_int, n_p, n_dof, n_en)
+function [R] = residual(LM, mesh, d, E, nu, n_int, p, q, n_dof, n_en, nodes_e)
 
 % Initializations
 r_e = zeros(n_en*n_dof+n_dof,1);
+R = zeros(n_en*n_dof+n_dof,1);
 
 for e = 1:length(mesh)
 	r_e = r_e*0;
-	x_a = x_aFunc(mesh);
 	
 	% Assembly element r_e
 	D = buildD(E, nu); 	% Inputs are material properties
@@ -19,7 +19,7 @@ for e = 1:length(mesh)
 		bf = getBodyForce(x);
 		
 		for a = 1:n_en
-			Ba = getB(a, dN_dx, dN_dy);
+			[Ba,~] = BandStrain(a, dN_dx, dN_dy);
 			for i = 1:n_dof
 				r = a*n_dof + i;
 				r_e(r) = r_e(r) + (bf(i)*N(a)-Ba'*sigma)*wts(igpt)*detJ;
@@ -30,11 +30,11 @@ for e = 1:length(mesh)
 	% Assemble global R
 	for a = 1:n_en
 		for i = 1:n_dof
-			p = LM(e, a, i);
+			loc = LM(e, a, i);
 			r = a*n_dof + i;
 			
-			if p >= 0
-				R(p) = R(p) + r_e(r);
+			if loc >= 0
+				R(loc) = R(loc) + r_e(r);
 			end
 		end
 	end
