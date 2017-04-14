@@ -1,5 +1,7 @@
-function [ IEN ] = LagrangeIEN( m,p,n,q,n_el )
+function [ IEN ] = LagrangeIEN( m,p,n,q )
 %Define IEN for lagrange basis up to cubic
+
+n_el = m*n;
 
 nnx = m+1+m*(p-1);
 %nny = n+1+n*(q-1); %not sure if needed

@@ -1,5 +1,7 @@
-function [ IEN ] = LinearIEN( n_el,m )
+function [ IEN ] = LinearIEN( n,m )
 %Define the IEN array for a linear basis
+
+n_el = n*m;
 
 %number of nodes per element
 nen = 4;
