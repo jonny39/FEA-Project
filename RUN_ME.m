@@ -13,16 +13,19 @@ q = p;
 %define mesh
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-n = 10;
-m = 10;
+n = 5;
+m = 3;
 he_n = 1/n;
 he_m = 1/m;
+
+%initialize IEN
+IEN = LagrangeIEN(m,p,n,q);
 
 %element type
 elementType = 'rect'; %'rad'
 
 %set geometry sizes and create mesh
-if elementType == 'rect'
+if strcmp(elementType,'rect') == 1
     N = 1; %width
     M = 1; %height
     
@@ -35,8 +38,9 @@ else
     
     mesh = RadialNodes(theta1,theta2,r1,r2,m,n,p,q);
 end
+nodes_el = elementConstruction(mesh,IEN);
 
-%initialize IEN
-IEN = LagrangeIEN(m,p,n,q);
+
+
 
 
