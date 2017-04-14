@@ -2,7 +2,7 @@ function [R] = residual(LM, mesh, d, E, nu, n_int, p, q, n_dof, n_en, nodes_e)
 
 % Initializations
 r_e = zeros(n_en*n_dof+n_dof,1);
-R = zeros(n_en*n_dof+n_dof,1);
+R = zeros(max(max(LM)),1);
 
 for e = 1:length(mesh)
 	r_e = r_e*0;
@@ -12,11 +12,11 @@ for e = 1:length(mesh)
 	[pts, wts] = guassQuad(n_int);		% Get quadrature stuff
 	
 	for igpt = 1:n_int
-		[N, dN_dxi, dN_deta] = lagrange2D(pts(igpt), eta(igpt), p, q);  % what are p and q 
-		[dN_dx, dN_dy, detJ, x] = lagrange2Dspatial(pts(igpt), eta(igpt), p, q, N, dN_dxi, dN_deta, nodes_e);
+		[N, dN_dxi, dN_deta] = lagrange2D(pts, p, q); 
+		[dN_dx, dN_dy, detJ, x] = lagrange2Dspatial(pts, p, q, N, dN_dxi, dN_deta, nodes_e);
 		
 		sigma = computeStress(d(e), dN_dx, dN_dy);
-		bf = getBodyForce(x);
+		bf = getBodyForce(nodes_e);
 		
 		for a = 1:n_en
 			[Ba,~] = BandStrain(a, dN_dx, dN_dy);
