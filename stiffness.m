@@ -1,10 +1,12 @@
 function [K] = Stiffness(LM, mesh, d, E, nu, n_int, n_f, n_dof, n_en)
 
 % Initializations
+k_e = 
+K = 
 
 for e = 1:length(mesh)
 	k_e = k_e*0;
-	x_a = x_a_(mesh);
+	%x_a = x_a_(mesh);	Probably delete
 	
 	% Assembly element k_e
 	[D] = buildD(E, nu); 	% Inputs are material properties
