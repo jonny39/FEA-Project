@@ -1,4 +1,4 @@
-function [K] = Stiffness(LM, mesh, d, E, nu, n_int, n_f, n_dof, n_en, nodes_e)
+function [K] = stiffness(LM, mesh, d, E, nu, n_int, n_f, n_dof, n_en, nodes_e)
 
 % Initializations
 k_e = zeros((n_dof+1)*n_en)

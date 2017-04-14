@@ -1,4 +1,4 @@
-function [R] = residual(LM, mesh, d, E, nu, n_int, p, q, n_dof, n_en, nodes_e)
+function [R] = residual(F_inc, LM, mesh, d, E, nu, n_int, p, q, n_dof, n_en, nodes_e)
 
 % Initializations
 r_e = zeros(n_en*n_dof+n_dof,1);
@@ -22,7 +22,7 @@ for e = 1:length(mesh)
 			[Ba,~] = BandStrain(a, dN_dx, dN_dy);
 			for i = 1:n_dof
 				r = a*n_dof + i;
-				r_e(r) = r_e(r) + (bf(i)*N(a)-Ba'*sigma)*wts(igpt)*detJ;
+				r_e(r) = r_e(r) + (bf(i)*N(a)*F_inc-Ba'*sigma)*wts(igpt)*detJ;
 			end
 		end
 	end
