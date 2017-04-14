@@ -22,7 +22,7 @@ he_m = 1/m;
 IEN = LagrangeIEN(m,p,n,q);
 
 %element type
-elementType = 'rad'; %'rad'
+elementType = 'rad'; %'rad' for radial, 'rect' for rectilinear
 
 %set geometry sizes and create mesh
 if strcmp(elementType,'rect') == 1
@@ -38,7 +38,16 @@ else
     
     mesh = RadialNodes(theta1,theta2,r1,r2,m,n,p,q);
 end
+
+%construct matrix of node locations for each element
+%nodes_el has dimensions (node #,nodal locations,element #)
 nodes_el = elementConstruction(p,q,mesh,IEN);
+
+
+
+
+
+
 
 
 
