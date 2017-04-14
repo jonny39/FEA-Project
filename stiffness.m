@@ -8,7 +8,7 @@ for e = 1:length(mesh)
 	
 	% Assembly element k_e
 	[D] = buildD(E, nu); 	% Inputs are material properties
-	[pts, wts] = QuadratureRule(n_int, n_int);		% Get quadrature stuff
+	[pts, wts] = gaussQuad(n_int);		% Get quadrature stuff
 	
 	for igpt = 1:n_int
 		[N, dN_dxi, dN_deta] = lagrange2D(xi(igpt), eta(igpt), p, q);  % what are p and q 

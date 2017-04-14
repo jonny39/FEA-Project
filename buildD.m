@@ -4,5 +4,5 @@ function D = buildD(E, nu)
 	
 	D = [2*mu+lambda 0 0;
 		 0 2*mu+lambda 0;
-		 0 0 2*mu];
+		 0 0 mu];
 end
