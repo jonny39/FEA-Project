@@ -1,6 +1,6 @@
 % 2 Dimensional FEA code
 % solves for strains and displacements
-clear all
+clear vars
 format compact
 
 %convergence tolerance
@@ -9,6 +9,11 @@ epsilon = 1e-12;
 %basis function order
 p = 1;
 q = p;
+
+%material parameters
+E = 1;
+nu = .23;
+n_dof = 3;
 
 %define mesh
 %for radial nodes, n is radial, m is circumfirential
@@ -22,26 +27,28 @@ he_m = 1/m;
 IEN = LagrangeIEN(m,p,n,q);
 
 %element type
-elementType = 'rad'; %'rad' for radial, 'rect' for rectilinear
+elementType = 'rect'; %'rad' for radial, 'rect' for rectilinear
 
-%set geometry sizes and create mesh
-if strcmp(elementType,'rect') == 1
-    N = 1; %width
-    M = 1; %height
-    
-    mesh = LagrangeNodes(m,M,p,n,N,q);
-else
-    theta1 = 0; %starting angle
-    theta2 = pi/2; %ending angle
-    r1 = .03; %inside radius
-    r2 = .08; %outside radius
-    
-    mesh = RadialNodes(theta1,theta2,r1,r2,m,n,p,q);
-end
+%define rectangular geometry
+rectangularGeometry(1) = 1; %width
+rectangularGeometry(2) = 1; %height
+
+%define radial geometry
+radialGeometry(1) = 0; %starting angle
+radialGeometry(2) = pi/2; %ending angle
+radialGeometry(3) = .03; %inside radius
+radialGeometry(4) = .08; %outside radius
+
+%create mesh
+mesh = GenerateMesh(elementType,rectangularGeometry,radialGeometry);
 
 %construct matrix of node locations for each element
 %nodes_el has dimensions (node #,nodal locations,element #)
 nodes_el = elementConstruction(p,q,mesh,IEN);
+n_en = size(nodes_el,1);
+
+dSolution = NewtonRaphson(mesh, LM, E, nu, p, q, n_dof, n_en, nodes_el);
+
 
 
 

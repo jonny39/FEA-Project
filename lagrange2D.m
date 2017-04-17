@@ -1,8 +1,8 @@
 function [N_vec, dN_dxi, dN_eta] = lagrange2D(z, p, q, n_int)
-	N = zeros(p+1, n_int)
-    dN = zeros(p+1, n_int)
+	N = zeros(p+1, n_int);
+    dN = zeros(p+1, n_int);
 	
-	N_vec = zeros((p+1)*(q+1),i);
+	N_vec = zeros((p+1)*(q+1),1);
 	dN_dxi = N_vec;
 	dN_deta = N_vec;
 	
@@ -12,7 +12,7 @@ function [N_vec, dN_dxi, dN_eta] = lagrange2D(z, p, q, n_int)
 			dN(a, i) = dN_calc(z(i), a, p);
 		end
 		
-		[ N_vec(:, i),dN_dxi(:, i) ,dN_deta(:, i) ] = N_define( N(:, i),dN(:, i),p,q )
+		[ N_vec(:, i),dN_dxi(:, i) ,dN_deta(:, i) ] = N_define( N(:, i),dN(:, i),p,q );
 		
 	end	
 end
