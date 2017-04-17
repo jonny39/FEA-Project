@@ -17,12 +17,13 @@ function [d] = NewtonRaphson(mesh, LM, ID, E, nu, p, q, n_dof, n_en, nodes_el,pr
 	
 	while n < n_max
 		F_inc = F_inc0*(n+1)/n_max;
-		R0 = residual(F_inc, LM, mesh, d, E, nu, n_int, p, q, n_dof, n_en, nodes_el);
+		R0 = residual(F_inc, LM, mesh, d, E, nu, n_int, p, q, n_dof, n_en, nodes_el,problemNumber);
 		R = R0;
 		i = 0;
 		
 		while i < i_max
 			K = stiffness(LM, mesh, d, E, nu, n_int, p, q, n_dof, n_en, nodes_el);
+            keyboard
 			delta = K\R;
             delta_i = 1;
             for L = 1:size(ID, 1)
@@ -34,7 +35,7 @@ function [d] = NewtonRaphson(mesh, LM, ID, E, nu, p, q, n_dof, n_en, nodes_el,pr
                 end
             end
             
-			R0 = residual(F_inc, LM, mesh, d, E, nu, n_int, p, q, n_dof, n_en, nodes_el);
+			R = residual(F_inc, LM, mesh, d, E, nu, n_int, p, q, n_dof, n_en, nodes_el,problemNumber);
 			
 			if norm(R) <= norm(R0)*epsilon
 				break;
