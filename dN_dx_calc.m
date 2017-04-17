@@ -1,3 +1,3 @@
-function dN_dx = dN_dx_calc(dN_dxi, dN_deta, y, p)
-	dN_dx = dN_dxi*dx_dxi_(y, dN_deta, n_f, i) - dN_deta*dx_dxi_(y, dN_dxi, n_f, i);
+function dN_dx = dN_dx_calc(y, dN_dxi, dN_deta, a, detJ)
+	dN_dx = (dN_dxi(a)*dx_dxi_calc(y, dN_deta) - dN_deta(a)*dx_dxi_calc(y, dN_dxi))/detJ;
 end

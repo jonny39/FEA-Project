@@ -52,7 +52,6 @@ for e = 1:size(LM,1)
 			end
 		end
     end
+    K
+    keyboard
 end
-
-
-
