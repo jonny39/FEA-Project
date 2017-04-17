@@ -1,6 +1,6 @@
 % 2 Dimensional FEA code
 % solves for strains and displacements
-clear all
+clear vars
 format compact
 
 %convergence tolerance
@@ -9,6 +9,12 @@ epsilon = 1e-12;
 %basis function order
 p = 1;
 q = p;
+
+%material parameters
+E = 1;
+nu = .23;
+n_dof = 3;
+
 
 %define mesh
 %for radial nodes, n is radial, m is circumfirential
@@ -22,7 +28,7 @@ he_m = 1/m;
 IEN = LagrangeIEN(m,p,n,q);
 
 %element type
-elementType = 'rad'; %'rad'
+elementType = 'rect'; %'rad' for radial, 'rect' for rectilinear
 
 %set geometry sizes and create mesh
 if strcmp(elementType,'rect') == 1
@@ -42,6 +48,12 @@ end
 %construct matrix of node locations for each element
 %nodes_el has dimensions (node #,nodal locations,element #)
 nodes_el = elementConstruction(p,q,mesh,IEN);
+n_en = size(nodes_el,1);
+
+dSolution = NewtonRaphson(mesh, LM, E, nu, p, q, n_dof, n_en, nodes_el);
+
+
+
 
 
 

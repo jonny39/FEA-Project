@@ -1,5 +1,8 @@
 %returns Guass Quadrature locations and weights
 function [xi,W] = guassQuad(nInt)
+    if nInt == 1
+        nInt = 2;
+    end
     switch nInt
         case 2
             xi = [-sqrt(3)/3 sqrt(3)/3;...
@@ -30,5 +33,4 @@ function [xi,W] = guassQuad(nInt)
                  8/9*5/9;...
                  5/9*5/9;];
     end
-    
 end
