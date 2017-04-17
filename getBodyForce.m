@@ -1,3 +1,3 @@
 function bf = getBodyForce(nodes_e)
-	bf = 0
+	bf = 0;
 end

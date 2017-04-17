@@ -12,14 +12,14 @@ q = p;
 
 %material parameters
 E = 1;
-nu = .23;
-n_dof = 3;
+nu = 0;
+n_dof = 2;
 
 %define mesh
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-n = 2;
-m = 2;
+n = 1;
+m = 1;
 he_n = 1/n;
 he_m = 1/m;
 
@@ -47,6 +47,10 @@ mesh = GenerateMesh(elementType,rectangularGeometry,radialGeometry,m,n,p,q);
 nodes_el = elementConstruction(p,q,mesh,IEN);
 n_en = size(nodes_el,1);
 
+%generate LM matrix
+LM = LM_creator(IEN,mesh,n_dof);
+
+%iterate with Newton Raphson
 dSolution = NewtonRaphson(mesh, LM, E, nu, p, q, n_dof, n_en, nodes_el);
 
 
