@@ -12,8 +12,8 @@ for e = 1:length(mesh)
 	[pts, wts] = gaussQuad(n_int);		% Get quadrature stuff
 	
 	for igpt = 1:n_int
-		[N, dN_dxi, dN_deta] = lagrange2D(pts, p, q, n_int);
-		[dN_dx, dN_dy, detJ] = lagrange2Dspatial(pts, p, q, N, dN_dxi, dN_deta, x_e);
+		[N, dN_dxi, dN_deta] = lagrange2D(pts(i), p, q, n_int); 
+		[dN_dx, dN_dy, detJ, x] = lagrange2Dspatial(pts(i), p, q, N, dN_dxi, dN_deta, nodes_e, n_int);
 		
 		for a = 1:n_en
 			Ba = getB(a, dN_dx, dN_dy);
