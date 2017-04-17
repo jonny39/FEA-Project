@@ -1,3 +1,3 @@
-function sigma = computeStress(d, dN_dx, dN_dy)
-	
+function sigma = computeStress(D,strain)
+	sigma = D*strain;
 end

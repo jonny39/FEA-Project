@@ -1,4 +1,4 @@
-function [d] = NewtonRaphson(mesh, LM, ID, E, nu, p, q, n_dof, n_en, nodes_el,problemNumber,M)
+function [d] = NewtonRaphson(mesh, LM, ID, E, nu, p, q, m, n_dof, n_en, nodes_el,problemNumber,M)
 	F_inc0 = 1;
 	epsilon = 1e-8;
 	i_max = 10;
@@ -17,7 +17,7 @@ function [d] = NewtonRaphson(mesh, LM, ID, E, nu, p, q, n_dof, n_en, nodes_el,pr
 	
 	while n < n_max
 		F_inc = F_inc0*(n+1)/n_max;
-		R0 = residual(F_inc, LM, mesh, d, E, nu, n_int, p, q, n_dof, n_en, nodes_el,problemNumber);
+		R0 = residual(F_inc, LM, mesh, d, E, nu, n_int, p, q, m, n_dof, n_en, nodes_el,problemNumber);
 		R = R0;
 		i = 0;
 		
@@ -35,7 +35,7 @@ function [d] = NewtonRaphson(mesh, LM, ID, E, nu, p, q, n_dof, n_en, nodes_el,pr
                 end
             end
             
-			R = residual(F_inc, LM, mesh, d, E, nu, n_int, p, q, n_dof, n_en, nodes_el,problemNumber);
+			R = residual(F_inc, LM, mesh, d, E, nu, n_int, p, q, m, n_dof, n_en, nodes_el,problemNumber);
 			
 			if norm(R) <= norm(R0)*epsilon
 				break;

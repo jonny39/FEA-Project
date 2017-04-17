@@ -10,5 +10,6 @@ elseif problemNumber == 2
                 d(s*2-1) = 1;
             end
         end
+    end
 end
 end
