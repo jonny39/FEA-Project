@@ -1,9 +1,9 @@
-function [  ] = plotter( d,mesh,plot_desired,m,n )
+function [  ] = plotter( d,mesh,plot_desired,m,n,ndof )
 %This function plots the solution
 
 n_loop = length(d)/2;
 
-d_plot = zeros(n_el,1);
+d_plot = zeros(n_loop,1);
 
 switch plot_desired
     
@@ -26,8 +26,8 @@ switch plot_desired
         
     case 4 %total disp
         for i = 1:n_loop
-            x_displacement = d((i-1)*ndof+1);
-            y_displacement = d((i-1)*ndof+2);
+            x_displacement(i) = d((i-1)*ndof+1);
+            y_displacement(i) = d((i-1)*ndof+2);
         end
         
 end
@@ -35,8 +35,8 @@ end
 x = mesh(:,1);
 y = mesh(:,2);
 
-x_plot = x+x_displacement;
-y_plot = y + y_displacement;
+x_plot = x+x_displacement';
+y_plot = y + y_displacement';
 
 figure(1)
 hold on

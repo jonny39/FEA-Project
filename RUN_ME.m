@@ -1,6 +1,8 @@
 % 2 Dimensional FEA code
 % solves for strains and displacements
-clear vars
+clearvars
+close all
+clc
 format compact
 
 %convergence tolerance
@@ -21,8 +23,8 @@ n_dof = 2;
 %define mesh
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-n = 1;
-m = 1;
+n = 2;
+m = 2;
 he_n = 1/n;
 he_m = 1/m;
 
@@ -51,14 +53,16 @@ nodes_el = elementConstruction(p,q,mesh,IEN);
 n_en = size(nodes_el,1);
 
 %generate LM matrix
-[LM,ID] = LM_creator(IEN,mesh,n_dof,M,problemNumber);
+[LM,ID] = LM_creator(IEN,mesh,n_dof,rectangularGeometry(1),problemNumber);
 
 %iterate with Newton Raphson
-dSolution = NewtonRaphson(mesh, LM, ID, E, nu, p, q, n_dof, n_en, nodes_el,problemNumber,M);
+dSolution = NewtonRaphson(mesh, LM, ID, E, nu, p, q, n_dof, n_en, nodes_el,problemNumber,rectangularGeometry(1));
 
 %plot solution
 dSolution
-plot(dSolution)
+plot_desired = 4;
+plotter(dSolution,mesh,plot_desired,m,n,n_dof)
+% % plot(dSolution)
 
 
 
