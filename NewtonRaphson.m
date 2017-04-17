@@ -1,4 +1,4 @@
-function [d] = NewtonRaphson(mesh, LM, E, nu, p, q, n_dof, n_en, nodes_el)
+function [d] = NewtonRaphson(mesh, LM, ID, E, nu, p, q, n_dof, n_en, nodes_el)
 	F_inc0 = 1;
 	epsilon = 1e-8;
 	i_max = 10;
@@ -14,10 +14,18 @@ function [d] = NewtonRaphson(mesh, LM, E, nu, p, q, n_dof, n_en, nodes_el)
 		i = 0;
 		
 		while i < i_max
-			K = stiffness(LM, mesh, d, E, nu, n_int, p, n_dof, n_en, nodes_el);
-			delta = K/R;
-			d = d + delta;
-			
+			K = stiffness(LM, mesh, d, E, nu, n_int, p, q, n_dof, n_en, nodes_el);
+			delta = K\R;
+            delta_i = 1;
+            for L = 1:size(ID, 1)
+                for k = 1:n_dof
+                    if ID(L,k) ~=0
+                        d((L-1)*(n_dof)+k) = d((L-1)*(n_dof)+k) + delta(delta_i);
+                        delta_i = delta_i + 1;
+                    end
+                end
+            end
+            
 			R0 = residual(F_inc, LM, mesh, d, E, nu, n_int, p, q, n_dof, n_en, nodes_el);
 			
 			if norm(R) <= norm(R0)*epsilon

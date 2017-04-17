@@ -1,4 +1,4 @@
-function [ LM ] = LM_creator( IEN,mesh,ndof )
+function [ LM,ID ] = LM_creator( IEN,mesh,ndof )
 %Define the LM
 
 %define ID, which maps the row or column of K or F with a given node number

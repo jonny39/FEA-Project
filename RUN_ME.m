@@ -12,7 +12,7 @@ q = p;
 
 %material parameters
 E = 1;
-nu = 0;
+nu = .0000000000000000001;
 n_dof = 2;
 
 %define mesh
@@ -48,10 +48,14 @@ nodes_el = elementConstruction(p,q,mesh,IEN);
 n_en = size(nodes_el,1);
 
 %generate LM matrix
-LM = LM_creator(IEN,mesh,n_dof);
+[LM,ID] = LM_creator(IEN,mesh,n_dof);
 
 %iterate with Newton Raphson
-dSolution = NewtonRaphson(mesh, LM, E, nu, p, q, n_dof, n_en, nodes_el);
+dSolution = NewtonRaphson(mesh, LM, ID, E, nu, p, q, n_dof, n_en, nodes_el);
+
+%plot solution
+dSolution
+plot(dSolution)
 
 
 

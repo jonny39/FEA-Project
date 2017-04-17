@@ -4,7 +4,7 @@ function [R] = residual(F_inc, LM, mesh, d, E, nu, n_int, p, q, n_dof, n_en, nod
 r_e = zeros(n_en*n_dof+n_dof,1);
 R = zeros(max(max(max(LM))),1);
 
-for e = 1:length(mesh)
+for e = 1:size(LM,1)
 	r_e = r_e*0;
 	
 	% Assembly element r_e
@@ -30,8 +30,10 @@ for e = 1:length(mesh)
 	for a = 1:n_en
 		for i = 1:n_dof
 			loc = LM(e, a, i);
+            if loc == 0; break; end
+            
 			r = a*n_dof + i;
-			
+            
 			if loc >= 0
 				R(loc) = R(loc) + r_e(r);
 			end
