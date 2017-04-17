@@ -15,7 +15,6 @@ E = 1;
 nu = .23;
 n_dof = 3;
 
-
 %define mesh
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
