@@ -6,13 +6,16 @@ format compact
 %convergence tolerance
 epsilon = 1e-12;
 
+%problem number
+problemNumber = 1;
+
 %basis function order
 p = 1;
 q = p;
 
 %material parameters
 E = 1;
-nu = .0000000000000000001;
+nu = 0;
 n_dof = 2;
 
 %define mesh
@@ -48,10 +51,10 @@ nodes_el = elementConstruction(p,q,mesh,IEN);
 n_en = size(nodes_el,1);
 
 %generate LM matrix
-[LM,ID] = LM_creator(IEN,mesh,n_dof);
+[LM,ID] = LM_creator(IEN,mesh,n_dof,M,problemNumber);
 
 %iterate with Newton Raphson
-dSolution = NewtonRaphson(mesh, LM, ID, E, nu, p, q, n_dof, n_en, nodes_el);
+dSolution = NewtonRaphson(mesh, LM, ID, E, nu, p, q, n_dof, n_en, nodes_el,problemNumber,M);
 
 %plot solution
 dSolution

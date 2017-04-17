@@ -1,10 +1,18 @@
-function [d] = NewtonRaphson(mesh, LM, ID, E, nu, p, q, n_dof, n_en, nodes_el)
+function [d] = NewtonRaphson(mesh, LM, ID, E, nu, p, q, n_dof, n_en, nodes_el,problemNumber,M)
 	F_inc0 = 1;
 	epsilon = 1e-8;
 	i_max = 10;
 	n_max = ceil(1./F_inc0);
 	n = 0;
 	d = zeros(size(mesh, 1)*n_dof, 1);
+    if problemNumber == 1
+        for s = 1:length(mesh)
+
+            if mesh(s,1) == M
+                d(s*2-1) = 1;
+            end
+        end
+    end
 	n_int = ceil((p+1)/2);
 	
 	while n < n_max

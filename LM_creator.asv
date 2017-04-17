@@ -1,4 +1,4 @@
-function [ LM,ID ] = LM_creator(IEN, mesh, ndof, M, probNumber)
+function [ LM,ID ] = LM_creator( IEN,mesh,ndof )
 %Define the LM
 
 %define ID, which maps the row or column of K or F with a given node number
@@ -14,13 +14,11 @@ constraint = ones(size(mesh,1),ndof);
 
 for node = 1:size(mesh,1)
     if mesh(node,1) == 0
-        constraint(node,:) = 0;        
+        constraint(node,:) = 0;
+    elseif mesh(node,1) == M
+        
     end
-    if probNumber == 1
-        if mesh(node,1) == M
-            constraint(node,1) = 0;
-        end
-    end    
+    
 end
 
 ID = ID.*constraint;
