@@ -1,4 +1,4 @@
-function mesh = GenerateMesh(elementType,rectangularGeometry,radialGeometry)
+function mesh = GenerateMesh(elementType,rectangularGeometry,radialGeometry,m,n,p,q)
 
 N = rectangularGeometry(1);
 M = rectangularGeometry(2);

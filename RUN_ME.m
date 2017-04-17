@@ -40,7 +40,7 @@ radialGeometry(3) = .03; %inside radius
 radialGeometry(4) = .08; %outside radius
 
 %create mesh
-mesh = GenerateMesh(elementType,rectangularGeometry,radialGeometry);
+mesh = GenerateMesh(elementType,rectangularGeometry,radialGeometry,m,n,p,q);
 
 %construct matrix of node locations for each element
 %nodes_el has dimensions (node #,nodal locations,element #)
