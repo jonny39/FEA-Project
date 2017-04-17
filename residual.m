@@ -12,8 +12,8 @@ for e = 1:length(mesh)
 	[pts, wts] = guassQuad(n_int);		% Get quadrature stuff
 	
 	for igpt = 1:n_int
-		[N, dN_dxi, dN_deta] = lagrange2D(pts, p, q); 
-		[dN_dx, dN_dy, detJ, x] = lagrange2Dspatial(pts, p, q, N, dN_dxi, dN_deta, nodes_e);
+		[N, dN_dxi, dN_deta] = lagrange2D(pts(i), p, q, n_int); 
+		[dN_dx, dN_dy, detJ, x] = lagrange2Dspatial(pts(i), p, q, N, dN_dxi, dN_deta, nodes_e, n_int);
 		
 		sigma = computeStress(d(e), dN_dx, dN_dy);
 		bf = getBodyForce(nodes_e);

@@ -8,8 +8,8 @@ function [N_vec, dN_dxi, dN_eta] = lagrange2D(z, p, q, n_int)
 	
 	for i = 1:n_int
 		for a = 1:p+1
-			N(a, i) = N_(z(i), a);
-			dN(a, i) = dN_calc(z(i), a);
+			N(a, i) = N_calc(z(i), a, p);
+			dN(a, i) = dN_calc(z(i), a, p);
 		end
 		
 		[ N_vec(:, i),dN_dxi(:, i) ,dN_deta(:, i) ] = N_define( N(:, i),dN(:, i),p,q )

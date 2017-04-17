@@ -1,10 +1,11 @@
-function d = NewtonRaphson(mesh, LM, E, nu, p, q, n_int, n_dof, n_en, nodes_el)
+function d = NewtonRaphson(mesh, LM, E, nu, p, q, n_dof, n_en, nodes_el)
 	F_inc0 = 1;
 	epsilon = 1e-8;
 	i_max = 10;
 	n_max = 1./F_inc0;
 	n = 0;
-	d = zeros((n_dof+1)*n_en, 1);
+	d = zeros(size(mesh, 1)*n_dof, 1);
+	n_int = ceil((p+1)/2);
 	
 	while n < n_max
 		F_inc = Finc0*(n+1)/n_max;
