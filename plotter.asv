@@ -39,10 +39,7 @@ x_plot = x+x_displacement;
 y_plot = y + y_displacement;
 
 figure(1)
-hold on
-for i = 1:size(x_plot,1)
-    plot(x_plot(i),y_plot(i),'b*')
-end
+for i = 1:size(x_
 
 %contourf(x,y,d_plot);
 
