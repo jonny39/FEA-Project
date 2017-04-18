@@ -17,10 +17,11 @@ for e = 1:size(LM,1)
 		for a = 1:n_en
 			[Ba,strain] = BandStrain(dN_dx,dN_dy,a,d,n_dof,e,IEN);
             sigma = computeStress(D,strain);
+            ba = Ba'*sigma;
 			for i = 1:n_dof
                 bf = getBodyForce(problemNumber);
 				r = a*n_dof + i;
-				r_e(r) = r_e(r) + (bf*N(a)*F_inc -Ba(i)'*sigma(i))*wts(igpt)*detJ;
+				r_e(r) = r_e(r) + (bf*N(a)*F_inc -ba(i))*wts(igpt)*detJ;
 			end
 		end
 	end
@@ -38,5 +39,4 @@ for e = 1:size(LM,1)
 			end
 		end
     end
-    keyboard
 end
