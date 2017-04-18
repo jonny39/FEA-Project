@@ -5,5 +5,6 @@ function N = N_calc(z, a, p)
         elseif a == 2
 			N = (z+1.)/2.;
 		end
-	end		
+    end		
+    keyboard
 end

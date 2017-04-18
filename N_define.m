@@ -5,6 +5,8 @@ N_vec = zeros((p+1)*(q+1),1);
 dN_dxi = N_vec;
 dN_deta = N_vec;
 
+keyboard
+
 for j = 1:q+1
     for i = 1:p+1
         N_vec((j-1)*(p+1)+i) = N(i)*N(j);

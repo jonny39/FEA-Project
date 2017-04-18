@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 function [ LM,ID,IEN ] = LM_creator(IEN, mesh, ndof, M, probNumber)
+=======
+function [ LM,ID ] = LM_creator(IEN, mesh, ndof, Geometry, probNumber)
+if length(Geometry) == 2 %rectangular mesh
+    geoLimit = Geometry(1);
+elseif length(Geometry) == 4 %radial mesh
+    geoLimit = Geometry(2); %outside radius
+end
+>>>>>>> 1611b7bdd8b0d5916494766e4a5064a22428ec01
 %Define the LM
 
 %define ID, which maps the row or column of K or F with a given node number
@@ -18,6 +27,7 @@ for node = 1:size(mesh,1)
     end
     if probNumber == 1
         if mesh(node,1) == M
+        if mesh(node,1) == geoLimit
             constraint(node,1) = 0;
         end
     end    

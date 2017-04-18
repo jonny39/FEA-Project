@@ -27,35 +27,35 @@ m = 2;
 he_n = 1/n;
 he_m = 1/m;
 
-%initialize IEN
-IEN = LagrangeIEN(m,p,n,q);
-
 %element type
 elementType = 'rect'; %'rad' for radial, 'rect' for rectilinear
 
-%define rectangular geometry
-rectGeometry(1) = 1; %width
-rectGeometry(2) = 1; %height
-
-%define radial geometry
-radGeometry(1) = 0; %starting angle
-radGeometry(2) = pi/2; %ending angle
-radGeometry(3) = .03; %inside radius
-radGeometry(4) = .08; %outside radius
+if strcmp(elementType,'rect') == 1
+    %define rectangular geometry
+    Geometry(1) = 1; %width
+    Geometry(2) = 1; %height
+elseif strcmp(elementType,'rad') == 1
+    %define radial geometry
+    Geometry(1) = .03; %inside radius
+    Geometry(2) = .08; %outside radius
+    Geometry(3) = 0; %starting angle
+    Geometry(4) = pi/2; %ending angle
+end
 
 %create mesh
-mesh = GenerateMesh(elementType,rectGeometry,radGeometry,m,n,p,q);
-
+mesh = GenerateMesh(elementType,Geometry,m,n,p,q);
+%initialize IEN
+IEN = LagrangeIEN(m,p,n,q);
 %construct matrix of node locations for each element
 %nodes_el has dimensions (node #,nodal locations,element #)
 nodes_el = elementConstruction(p,q,mesh,IEN);
 n_en = size(nodes_el,1);
 
 %generate LM matrix
-[LM,ID] = LM_creator(IEN,mesh,n_dof,rectGeometry(1),problemNumber);
+[LM,ID] = LM_creator(IEN,mesh,n_dof,Geometry,problemNumber);
 
 %iterate with Newton Raphson
-dSolution = NewtonRaphson(mesh, LM, ID, E, nu, p, q, m, n_dof, n_en, nodes_el,problemNumber,rectGeometry(1));
+dSolution = NewtonRaphson(mesh,LM,IEN,ID,E,nu,p,q,m,n_dof,n_en,nodes_el,problemNumber,Geometry);
 
 %plot solution
 dSolution

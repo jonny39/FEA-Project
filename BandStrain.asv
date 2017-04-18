@@ -1,10 +1,10 @@
-function [B,strain] = BandStrain(dNdx,dNdy,a,d,n_dof,e,IEN)
+function [B,strain] = BandStrain(dNdx,dNdy,a,d,n_dof,e,LM)
 
     B = [dNdx(a) 0;...
         0 dNdy(a);...
         dNdy(a) dNdx(a)];
-
-    strain = B*d(IEN(e,a)*n_dof-1:IEN(e,a)*n_dof);
+    
+    strain = B*d(IEN(e,a)*n_dof+1:IEN(e,a)*n_dof+n
 %     strain = B*d(a*n_dof-1:a*n_dof);
 
 end
