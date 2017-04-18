@@ -30,6 +30,7 @@ switch plot_desired
             y_displacement(i) = d((i-1)*ndof+2);
         end
         
+        
 end
 
 x = mesh(:,1);
