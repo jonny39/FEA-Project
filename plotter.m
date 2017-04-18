@@ -44,7 +44,7 @@ hold on
 for i = 1:size(x_plot,1)
     plot(x_plot(i),y_plot(i),'b*')
 end
-
+hold off
 %contourf(x,y,d_plot);
 
         

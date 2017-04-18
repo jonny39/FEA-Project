@@ -1,21 +1,17 @@
-function mesh = GenerateMesh(elementType,rectangularGeometry,radialGeometry,m,n,p,q)
-
-N = rectangularGeometry(1);
-M = rectangularGeometry(2);
-
-theta1 = radialGeometry(1);
-theta2 = radialGeometry(2);
-r1 = radialGeometry(3);
-r2 = radialGeometry(4);
+function mesh = GenerateMesh(elementType,Geometry,m,n,p,q)
+    if strcmp(elementType,'rect') == 1
+    N = Geometry(1);
+    M = Geometry(2);
+    elseif strcmp(elementType,'rad') == 1
+    theta1 = Geometry(1);
+    theta2 = Geometry(2);
+    r1 = Geometry(3);
+    r2 = Geometry(4);
+    end
 
     if strcmp(elementType,'rect') == 1
         mesh = LagrangeNodes(m,M,p,n,N,q);
-    else
-        theta1 = 0; %starting angle
-        theta2 = pi/2; %ending angle
-        r1 = .03; %inside radius
-        r2 = .08; %outside radius
-
+    elseif strcmp(elementType,'rad') == 1
         mesh = RadialNodes(theta1,theta2,r1,r2,m,n,p,q);
     end
 end

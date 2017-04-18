@@ -1,4 +1,4 @@
-function [K] = stiffness(LM, mesh, d, E, nu, n_int, p, q, n_dof, n_en, nodes_e)
+function [K] = stiffness(LM, d, D, n_int, p, q, n_dof, n_en, nodes_e)
 
 % Initializations
 k_e = zeros((n_dof+1)*n_en);
@@ -8,7 +8,6 @@ for e = 1:size(LM,1)
 	k_e = k_e*0;
 	
 	% Assembly element k_e
-	D = buildD(E, nu); 	% Inputs are material properties
 	[pts, wts] = guassQuad(n_int);		% Get quadrature stuff
 	
 	for igpt = 1:n_int

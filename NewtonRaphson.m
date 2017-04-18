@@ -1,5 +1,13 @@
-function [d] = NewtonRaphson(mesh, LM, ID, E, nu, p, q, m, n_dof, n_en, nodes_el,problemNumber,M)
-	F_inc0 = 1;
+function [d] = NewtonRaphson(mesh, LM, ID, E, nu, p, q, m, n_dof, n_en, nodes_el,problemNumber,Geometry)
+	if length(Geometry) == 2 %rectangular mesh
+        geoLimit = Geometry(1);
+    elseif length(Geometry) == 4 %radial mesh
+        geoLimit = Geometry(2); %outside radius
+    end
+    
+    D = buildD(E, nu); 	% Inputs are material properties
+    
+    F_inc0 = 1;
 	epsilon = 1e-8;
 	i_max = 10;
 	n_max = ceil(1./F_inc0);
@@ -8,7 +16,7 @@ function [d] = NewtonRaphson(mesh, LM, ID, E, nu, p, q, m, n_dof, n_en, nodes_el
     if problemNumber == 1
         for s = 1:length(mesh)
 
-            if mesh(s,1) == M
+            if mesh(s,1) == geoLimit
                 d(s*2-1) = 1;
             end
         end
@@ -17,13 +25,12 @@ function [d] = NewtonRaphson(mesh, LM, ID, E, nu, p, q, m, n_dof, n_en, nodes_el
 	
 	while n < n_max
 		F_inc = F_inc0*(n+1)/n_max;
-		R0 = residual(F_inc, LM, mesh, d, E, nu, n_int, p, q, m, n_dof, n_en, nodes_el,problemNumber);
+		R0 = residual(F_inc, LM, mesh, d, D, n_int, p, q, m, n_dof, n_en, nodes_el,problemNumber);
 		R = R0;
 		i = 0;
 		
 		while i < i_max
-			K = stiffness(LM, mesh, d, E, nu, n_int, p, q, n_dof, n_en, nodes_el);
-            keyboard
+			K = stiffness(LM, d, D, n_int, p, q, n_dof, n_en, nodes_el);
 			delta = K\R;
             delta_i = 1;
             for L = 1:size(ID, 1)
@@ -35,7 +42,7 @@ function [d] = NewtonRaphson(mesh, LM, ID, E, nu, p, q, m, n_dof, n_en, nodes_el
                 end
             end
             
-			R = residual(F_inc, LM, mesh, d, E, nu, n_int, p, q, m, n_dof, n_en, nodes_el,problemNumber);
+			R = residual(F_inc, LM, mesh, d, D, n_int, p, q, m, n_dof, n_en, nodes_el,problemNumber);
 			
 			if norm(R) <= norm(R0)*epsilon
 				break;
