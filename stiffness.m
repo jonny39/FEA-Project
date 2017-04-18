@@ -53,6 +53,7 @@ K = zeros(max(max(max(LM))),max(max(max(LM))));
             end
         end
     end
+    keyboard
 end
 
 

@@ -61,7 +61,10 @@ dSolution = NewtonRaphson(mesh,LM,IEN,ID,E,nu,p,q,m,n_dof,n_en,nodes_el,problemN
 dSolution
 plot_desired = 4;
 plotter(dSolution,mesh,plot_desired,m,n,n_dof)
-
+if isnan(sum(dSolution)) == 0
+    load handel.mat
+    sound(y,Fs)
+end
 
 
 
