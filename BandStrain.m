@@ -5,6 +5,4 @@ function [B,strain] = BandStrain(dNdx,dNdy,a,d,n_dof,e,IEN)
         dNdy(a) dNdx(a)];
 
     strain = B*d(IEN(e,a)*n_dof-1:IEN(e,a)*n_dof);
-%     strain = B*d(a*n_dof-1:a*n_dof);
-
 end

@@ -1,6 +1,8 @@
 function [N_vec, dN_dxi, dN_deta] = lagrange2D(pts, p, q)
-	N = zeros((p+1)*(q+1), 1);
-    dN = zeros(p+1, 1);
+N_xi = zeros(p+1,1);
+N_eta = zeros(p+1,1);
+dN_xi = zeros(p+1,1);
+dN_eta = zeros(p+1,1);
 	
 	for a = 1:(p+1)
 		N_xi(a) = N_calc(pts(1), a, p);

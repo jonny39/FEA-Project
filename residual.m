@@ -1,4 +1,4 @@
-function [R] = residual(F_inc, LM, IEN, mesh, d, D, n_int, p, q, m, n_dof, n_en, nodes_e,problemNumber)
+function [R] = residual(F_inc, LM, IEN, mesh, d, D, n_int, p, q, m, n_dof, n_en, nodes_el,problemNumber)
 
 % Initializations
 r_e = zeros(n_en*n_dof+n_dof,1);
@@ -12,7 +12,7 @@ for e = 1:size(LM,1)
 	
 	for igpt = 1:n_int
 		[N, dN_dxi, dN_deta] = lagrange2D(pts(igpt,:), p, q); 
-		[detJ, dN_dx, dN_dy] = lagrange2Dspatial(pts, p, q, N, dN_dxi, dN_deta, nodes_e(:,:,e));
+		[detJ, dN_dx, dN_dy] = lagrange2Dspatial(pts, p, q, N, dN_dxi, dN_deta, nodes_el(:,:,e));
 		
 		for a = 1:n_en
 			[Ba,strain] = BandStrain(dN_dx,dN_dy,a,d,n_dof,e,IEN);
@@ -37,5 +37,6 @@ for e = 1:size(LM,1)
 				R(loc) = R(loc) + r_e(r);
 			end
 		end
-	end
+    end
+    keyboard
 end

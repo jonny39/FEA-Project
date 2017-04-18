@@ -7,9 +7,10 @@ K = zeros(max(max(max(LM))),max(max(max(LM))));
     for e = 1:size(LM,1)
         k_e = k_e*0;
 
-        % Assembly element k_e
-        [pts, wts] = guassQuad(n_int);		% Get quadrature stuff
+        % Get quadrature stuff
+        [pts, W] = guassQuad(n_int);
 
+        % Assembly element k_e
         for igpt = 1:n_int
             [N, dN_dxi, dN_deta] = lagrange2D(pts(igpt,:), p, q); 
             [detJ, dN_dx, dN_dy] = lagrange2Dspatial(pts, p, q, N, dN_dxi, dN_deta, nodes_e);
@@ -25,7 +26,7 @@ K = zeros(max(max(max(LM))),max(max(max(LM))));
                             r = (a-1)*n_dof + i;
                             s = (b-1)*n_dof + j;
                             temp = Ba'*D*Bb;
-                            k_e(r, s) = k_e(r, s) + temp(i,j)*wts(igpt)*detJ;
+                            k_e(r,s) = k_e(r,s) + temp(i,j)*W(igpt)*detJ;
                         end
                     end
                 end
