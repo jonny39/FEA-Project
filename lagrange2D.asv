@@ -12,5 +12,5 @@ dN_eta = zeros(p+1,1);
     end
     		
 	[ N_vec,dN_dxi,dN_deta ] = N_define( N_xi,N_eta,dN_xi,dN_eta,p,q );
-	
+	keyboard
 end

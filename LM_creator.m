@@ -23,7 +23,6 @@ for node = 1:size(mesh,1)
         constraint(node,:) = 0;        
     end
     if probNumber == 1
-        if mesh(node,1) == M
         if mesh(node,1) == geoLimit
             constraint(node,1) = 0;
         end

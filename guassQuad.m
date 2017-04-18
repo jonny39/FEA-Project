@@ -1,7 +1,8 @@
 %returns Guass Quadrature locations and weights
 function [pts,W] = guassQuad(nInt)
     if nInt == 1
-        nInt = 2;
+        pts = [0 0];
+        W = [4];
     end
     switch nInt
         case 2
