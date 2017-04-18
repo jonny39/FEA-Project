@@ -12,7 +12,7 @@ for e = 1:size(LM,1)
 	
 	for igpt = 1:n_int
 		[N, dN_dxi, dN_deta] = lagrange2D(pts(igpt,:), p, q); 
-		[detJ, dN_dx, dN_dy] = lagrange2Dspatial(pts, p, q, N, dN_dxi, dN_deta, nodes_e);
+		[detJ, dN_dx, dN_dy] = lagrange2Dspatial(pts, p, q, N, dN_dxi, dN_deta, nodes_e(:,:,e));
 		
 		for a = 1:n_en
 			[Ba,strain] = BandStrain(dN_dx,dN_dy,a,d,n_dof,e,IEN);

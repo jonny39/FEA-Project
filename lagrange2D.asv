@@ -1,0 +1,16 @@
+function [N_vec, dN_dxi, dN_deta] = lagrange2D(pts, p, q)
+	N = zeros((p+1)*(q+1), 1);
+    dN = zeros(p+1, 1);
+	
+	for a = 1:(p+1)*(q+1)
+		N_xi(a) = N_calc(pts(1), a, p);
+        N_eta(a
+		dN(a) = dN_calc(pts(1), a, p);
+    end
+    
+    keyboard
+		
+	[ N_vec,dN_dxi,dN_deta ] = N_define( N,dN,p,q );
+	
+    keyboard
+end

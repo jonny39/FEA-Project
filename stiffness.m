@@ -14,7 +14,6 @@ K = zeros(max(max(max(LM))),max(max(max(LM))));
             [N, dN_dxi, dN_deta] = lagrange2D(pts(igpt,:), p, q); 
             [detJ, dN_dx, dN_dy] = lagrange2Dspatial(pts, p, q, N, dN_dxi, dN_deta, nodes_e);
 
-            keyboard
             for a = 1:n_en
                 [Ba,~] = BandStrain(dN_dx,dN_dy,a,d,n_dof,e,IEN);
 
