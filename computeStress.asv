@@ -1,0 +1,3 @@
+function sigma = computeStress(D,B,d)
+	sigma = D*strain;
+end

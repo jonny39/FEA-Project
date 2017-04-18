@@ -7,8 +7,11 @@ function [N_vec, dN_dxi, dN_deta] = lagrange2D(pts, p, q)
 	for a = 1:p+1
 		N(a) = N_calc(pts(a), a, p);
 		dN(a) = dN_calc(pts(a), a, p);
-	end
+    end
+    
+    keyboard
 		
 	[ N_vec,dN_dxi,dN_deta ] = N_define( N,dN,p,q );
 	
+    keyboard
 end
