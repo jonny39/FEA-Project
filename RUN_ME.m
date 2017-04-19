@@ -14,6 +14,7 @@ problemNumber = 1;
 p = 1;
 q = p;
 
+
 %material parameters
 E = 1;
 nu = 0;
