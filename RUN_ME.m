@@ -22,8 +22,8 @@ n_dof = 2;
 %define mesh
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-n = 32;
-m = 20;
+n = 3;
+m = 3;
 he_n = 1/n;
 he_m = 1/m;
 
@@ -31,7 +31,7 @@ he_m = 1/m;
 elementType = 'rect'; %'rad' for radial, 'rect' for rectilinear
 
 %displacement amount in problem 1
-displacement = 0.5;
+displacement = 1;
 
 if strcmp(elementType,'rect') == 1
     %define rectangular geometry
