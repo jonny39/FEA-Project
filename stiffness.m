@@ -3,12 +3,12 @@ function [K] = stiffness(LM, IEN, d, D, n_int, p, q, n_dof, n_en, nodes_e)
 % Initializations
 k_e = zeros((n_dof)*(n_en-1) + n_dof);
 K = zeros(max(max(max(LM))),max(max(max(LM))));
+        
+% Get quadrature stuff
+[pts, W] = guassQuad(n_int);
 
     for e = 1:size(LM,1)
         k_e = k_e*0;
-
-        % Get quadrature stuff
-        [pts, W] = guassQuad(n_int);
 
         % Assembly element k_e
         for igpt = 1:n_int
@@ -20,12 +20,11 @@ K = zeros(max(max(max(LM))),max(max(max(LM))));
 
                 for b = 1:n_en
                     [Bb,~] = BandStrain(dN_dx,dN_dy,a,d,n_dof,e,IEN);
-
+                    temp = Ba'*D*Bb;
                     for i = 1:n_dof
                         for j = 1:n_dof
                             r = (a-1)*n_dof + i;
                             s = (b-1)*n_dof + j;
-                            temp = Ba'*D*Bb;
                             k_e(r,s) = k_e(r,s) + temp(i,j)*W(igpt)*detJ;
                         end
                     end
@@ -53,7 +52,6 @@ K = zeros(max(max(max(LM))),max(max(max(LM))));
             end
         end
     end
-    keyboard
 end
 
 

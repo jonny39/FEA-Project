@@ -17,7 +17,7 @@ function [d] = NewtonRaphson(mesh, LM, IEN, ID, E, nu, p, q, m, n_dof, n_en, nod
         for s = 1:length(mesh)
 
             if mesh(s,1) == geoLimit
-                d(s*2-1) = 1;
+                d(s*2-1) = 0.1;
             end
         end
     end
