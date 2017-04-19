@@ -1,4 +1,5 @@
-function [R] = residual(F_inc, LM, IEN, mesh, d, D, n_int, p, q, m, n_dof, n_en, nodes_el,problemNumber)
+function [R] = residual(F_inc, LM, IEN, mesh, d, D, n_int,...
+                        p, q, m, n_dof, n_en, nodes_el,problemNumber)
 
 % Initializations
 r_e = zeros(n_en*n_dof+n_dof,1);
@@ -13,6 +14,8 @@ for e = 1:size(LM,1)
 	for igpt = 1:n_int
 		[N, dN_dxi, dN_deta] = lagrange2D(pts(igpt,:), p, q); 
 		[detJ, dN_dx, dN_dy] = lagrange2Dspatial(pts, p, q, N, dN_dxi, dN_deta, nodes_el(:,:,e));
+        
+        
 		
 		for a = 1:n_en
 			[Ba,strain] = BandStrain(dN_dx,dN_dy,a,d,n_dof,e,IEN);
@@ -21,11 +24,11 @@ for e = 1:size(LM,1)
 			for i = 1:n_dof
                 bf = getBodyForce(problemNumber);
 				r = (a-1)*n_dof + i;
-				r_e(r) = r_e(r) + (bf*N(a)*F_inc -ba(i))*wts(igpt)*detJ;
+				r_e(r) = r_e(r) + (bf*N(a)*F_inc - ba(i))*wts(igpt)*detJ;
 			end
 		end
 	end
-	r_e
+	
 	% Assemble global R
 	for a = 1:n_en
 		for i = 1:n_dof

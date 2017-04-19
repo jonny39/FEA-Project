@@ -22,13 +22,16 @@ n_dof = 2;
 %define mesh
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-n = 2;
-m = 2;
+n = 32;
+m = 20;
 he_n = 1/n;
 he_m = 1/m;
 
 %element type
 elementType = 'rect'; %'rad' for radial, 'rect' for rectilinear
+
+%displacement amount in problem 1
+displacement = 0.5;
 
 if strcmp(elementType,'rect') == 1
     %define rectangular geometry
@@ -55,7 +58,7 @@ n_en = size(nodes_el,1);
 [LM,ID,IDflag] = LM_creator(IEN,mesh,n_dof,Geometry,problemNumber);
 
 %iterate with Newton Raphson
-dSolution = NewtonRaphson(mesh,LM,IDflag,IEN,ID,E,nu,p,q,m,n_dof,n_en,nodes_el,problemNumber,Geometry);
+dSolution = NewtonRaphson(mesh,LM,IDflag,IEN,ID,E,nu,p,q,m,n_dof,n_en,nodes_el,problemNumber,Geometry,displacement);
 
 %plot solution
 dSolution
