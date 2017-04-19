@@ -1,4 +1,5 @@
-function [R] = residual(F_inc, LM, IEN, mesh, d, D, n_int, p, q, m, n_dof, n_en, nodes_el,problemNumber)
+function [R] = residual(F_inc, LM, IEN, mesh, d, D, n_int,...
+                        p, q, m, n_dof, n_en, nodes_el,problemNumber)
 
 % Initializations
 r_e = zeros(n_en*n_dof+n_dof,1);
@@ -21,7 +22,7 @@ for e = 1:size(LM,1)
 			for i = 1:n_dof
                 bf = getBodyForce(problemNumber);
 				r = (a-1)*n_dof + i;
-				r_e(r) = r_e(r) + (bf*N(a)*F_inc -ba(i))*wts(igpt)*detJ;
+				r_e(r) = r_e(r) + (bf*N(a)*F_inc - ba(i))*wts(igpt)*detJ;
 			end
 		end
 	end

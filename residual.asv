@@ -20,23 +20,21 @@ for e = 1:size(LM,1)
             ba = Ba'*sigma;
 			for i = 1:n_dof
                 bf = getBodyForce(problemNumber);
-				r = a*n_dof + i;
+				r = (a-1)*n_dof + i;
 				r_e(r) = r_e(r) + (bf*N(a)*F_inc -ba(i))*wts(igpt)*detJ;
 			end
 		end
 	end
-	
+	r_e
 	% Assemble global R
 	for a = 1:n_en
 		for i = 1:n_dof
 			loc = LM(e, a, i);
             if loc == 0; break; end
             
-			r = a*n_dof + i;
-            
-			if loc >= 0
-				R(loc) = R(loc) + r_e(r);
-			end
+			r = (a-1)*n_dof + i;
+			R(loc) = R(loc) + r_e(r);
+
 		end
     end
 end
