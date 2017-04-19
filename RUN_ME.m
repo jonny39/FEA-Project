@@ -22,8 +22,8 @@ n_dof = 2;
 %define mesh
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-n = 1;
-m = 1;
+n = 2;
+m = 2;
 he_n = 1/n;
 he_m = 1/m;
 
@@ -61,9 +61,10 @@ dSolution = NewtonRaphson(mesh,LM,IEN,ID,E,nu,p,q,m,n_dof,n_en,nodes_el,problemN
 dSolution
 plot_desired = 4;
 plotter(dSolution,mesh,plot_desired,m,n,n_dof)
+
 if isnan(sum(dSolution)) == 0
     load handel.mat
-    sound(y,Fs)
+%     sound(y,Fs)
 end
 
 
