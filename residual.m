@@ -32,9 +32,8 @@ for e = 1:size(LM,1)
 			loc = LM(e, a, i);
             if loc == 0; break; end
             
-			r = (a-1)*n_dof + i
-            r_e
-			R(loc) = R(loc) + r_e(r)
+			r = (a-1)*n_dof + i;
+			R(loc) = R(loc) + r_e(r);
 
 		end
     end

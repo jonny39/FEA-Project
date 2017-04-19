@@ -21,7 +21,7 @@ switch plot_desired
         for i = 1:n_loop
             sigma1 = d((i-1)*3+1);
             sigma2 = d((i-1)*3+2);
-            sigma12 = 0; %fix this
+            sigma12 = 0; %fix t
             d_plot(i) = sqrt(sigma1^2 - sigma1*sigma2 + sigma2^2 + 3*sigma12^2);
         end
         

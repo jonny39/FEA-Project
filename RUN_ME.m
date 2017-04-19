@@ -23,7 +23,7 @@ n_dof = 2;
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
 n = 2;
-m = 2;
+m = 1;
 he_n = 1/n;
 he_m = 1/m;
 
@@ -52,10 +52,10 @@ nodes_el = elementConstruction(p,q,mesh,IEN);
 n_en = size(nodes_el,1);
 
 %generate LM matrix
-[LM,ID] = LM_creator(IEN,mesh,n_dof,Geometry,problemNumber);
+[LM,ID,IDflag] = LM_creator(IEN,mesh,n_dof,Geometry,problemNumber);
 
 %iterate with Newton Raphson
-dSolution = NewtonRaphson(mesh,LM,IEN,ID,E,nu,p,q,m,n_dof,n_en,nodes_el,problemNumber,Geometry);
+dSolution = NewtonRaphson(mesh,LM,IDflag,IEN,ID,E,nu,p,q,m,n_dof,n_en,nodes_el,problemNumber,Geometry);
 
 %plot solution
 dSolution
