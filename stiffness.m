@@ -19,7 +19,7 @@ K = zeros(max(max(max(LM))),max(max(max(LM))));
                 [Ba,~] = BandStrain(dN_dx,dN_dy,a,d,n_dof,e,IEN);
 
                 for b = 1:n_en
-                    [Bb,~] = BandStrain(dN_dx,dN_dy,a,d,n_dof,e,IEN);
+                    [Bb,~] = BandStrain(dN_dx,dN_dy,b,d,n_dof,e,IEN);
                     temp = Ba'*D*Bb;
                     for i = 1:n_dof
                         for j = 1:n_dof
