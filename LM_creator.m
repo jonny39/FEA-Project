@@ -1,4 +1,4 @@
-function [ LM,ID,ID_flag ] = LM_creator(IEN, mesh, ndof, Geometry, probNumber)
+function [ LM,ID ] = LM_creator(IEN, mesh, ndof, Geometry, probNumber)
 if length(Geometry) == 2 %rectangular mesh
     geoLimit = Geometry(1);
 elseif length(Geometry) == 4 %radial mesh
@@ -17,7 +17,6 @@ for i = 1:size(mesh,1)
 end
 
 constraint = ones(size(mesh,1),ndof);
-constraint_flag = constraint;
 
 for node = 1:size(mesh,1)
     if mesh(node,1) == 0
@@ -26,7 +25,6 @@ for node = 1:size(mesh,1)
     if probNumber == 1
         if mesh(node,1) == geoLimit
             constraint(node,1) = 0;
-%                constraint_flag(node,1) = -1;
         end
 %         if mesh(node,2) == 0
 %             constraint(node,2) = 0;
@@ -38,7 +36,6 @@ for node = 1:size(mesh,1)
 end
 
 ID = ID.*constraint;
-ID_flag = ID.*constraint_flag;
 
 %reset the numbers so as to increase from 1
 counter = 0;
@@ -66,15 +63,6 @@ for i = 1:size(IEN,1)
         end
     end
 end
-
-% LMflag = zeros(size(LM));
-% for i = 1:size(IEN,1)
-%     for j = 1:size(IEN,2)
-%         for k = 1:size(LM,3)
-%             LMflag(i,j,k) = ID_flag(IEN(i,j),k);
-%         end
-%     end
-% end
 
 
 end
