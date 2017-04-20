@@ -17,7 +17,7 @@ displacement = 1;
 elementType = 'rect'; %'rad' for radial, 'rect' for rectilinear
 
 %basis function order
-p = 1;
+p = 2;
 q = p;
 
 %material parameters
@@ -28,8 +28,8 @@ n_dof = 2;
 %define mesh geometry
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-n = 100;
-m = 100;
+n = 1;
+m = 1;
 he_n = 1/n;
 he_m = 1/m;
 
