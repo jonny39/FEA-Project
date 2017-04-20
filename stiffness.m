@@ -1,7 +1,7 @@
 function [K] = stiffness(LM, IEN, d, D, n_int, p, q, n_dof, n_en, nodes_e)
 
 % Initializations
-k_e = zeros((n_dof)*(n_en-1) + n_dof);
+k_e = zeros((n_dof)*(n_en));
 K = zeros(max(max(max(LM))),max(max(max(LM))));
         
 % Get quadrature stuff
