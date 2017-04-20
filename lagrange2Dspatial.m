@@ -1,6 +1,6 @@
-function [detJ, dN_dx, dN_dy] = lagrange2Dspatial(pts, p, q, N, dN_dxi, dN_deta, nodes_e)
+function [detJ, dN_dx, dN_dy] = lagrange2Dspatial(dN_dxi, dN_deta, nodes_e)
 
-    detJ = detJ_calc(pts, dN_dxi, dN_deta, p, nodes_e, N);
+    detJ = detJ_calc(dN_dxi, dN_deta, nodes_e);
 	dN_dx = zeros(length(dN_dxi),1);
 	dN_dy = zeros(length(dN_deta),1);
 

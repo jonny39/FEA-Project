@@ -1,5 +1,5 @@
-function [R] = residual(F_inc, LM, IEN, mesh, d, D, n_int,...
-                        p, q, m, n_dof, n_en, nodes_el,problemNumber)
+function [R] = residual(F_inc, LM, IEN, d, D, n_int,...
+                        p, q, n_dof, n_en, nodes_el,problemNumber)
 
 % Initializations
 r_e = zeros(n_en*n_dof+n_dof,1);
@@ -13,12 +13,12 @@ for e = 1:size(LM,1)
 	
 	for igpt = 1:n_int
 		[N, dN_dxi, dN_deta] = lagrange2D(pts(igpt,:), p, q); 
-		[detJ, dN_dx, dN_dy] = lagrange2Dspatial(pts, p, q, N, dN_dxi, dN_deta, nodes_el(:,:,e));
+		[detJ, dN_dx, dN_dy] = lagrange2Dspatial(dN_dxi, dN_deta, nodes_el(:,:,e));
         
         sigma = computeStress(D,dN_dx,dN_dy,d,n_dof,e,IEN,n_en);
 		
 		for a = 1:n_en
-			Ba = Bcalc(dN_dx,dN_dy,a,d,n_dof,e,IEN);
+			Ba = Bcalc(dN_dx,dN_dy,a);
             ba = Ba'*sigma;
 			for i = 1:n_dof
                 bf = getBodyForce(problemNumber);

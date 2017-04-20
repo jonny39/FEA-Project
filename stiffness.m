@@ -1,4 +1,4 @@
-function [K] = stiffness(LM, IEN, d, D, n_int, p, q, n_dof, n_en, nodes_e)
+function [K] = stiffness(LM, D, n_int, p, q, n_dof, n_en, nodes_e)
 
 % Initializations
 k_e = zeros((n_dof)*(n_en));
@@ -13,13 +13,13 @@ K = zeros(max(max(max(LM))),max(max(max(LM))));
         % Assembly element k_e
         for igpt = 1:n_int
             [N, dN_dxi, dN_deta] = lagrange2D(pts(igpt,:), p, q); 
-            [detJ, dN_dx, dN_dy] = lagrange2Dspatial(pts, p, q, N, dN_dxi, dN_deta, nodes_e);
+            [detJ, dN_dx, dN_dy] = lagrange2Dspatial(dN_dxi, dN_deta, nodes_e);
 
             for a = 1:n_en
-                Ba = Bcalc(dN_dx,dN_dy,a,d,n_dof,e,IEN);
+                Ba = Bcalc(dN_dx,dN_dy,a);
 
                 for b = 1:n_en
-                    Bb = Bcalc(dN_dx,dN_dy,b,d,n_dof,e,IEN);
+                    Bb = Bcalc(dN_dx,dN_dy,b);
                     temp = Ba'*D*Bb;
                     for i = 1:n_dof
                         for j = 1:n_dof
