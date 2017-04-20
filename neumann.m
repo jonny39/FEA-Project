@@ -1,4 +1,4 @@
-function P = neumann(n_int, n_en)
+function P = neumann(n_int, n_en, n_dof)
 	n_face = 4;
 	P = n_en*n_dof+n_dof;
 	for iface = 1:n_face
