@@ -10,7 +10,7 @@ dN_eta = zeros(p+1,1);
 		dN_xi(a) = dN_calc(pts(1), a, p);
         dN_eta(a) =  dN_calc(pts(2), a, p);
     end
-    		
-	[ N_vec,dN_dxi,dN_deta ] = N_define( N_xi,N_eta,dN_xi,dN_eta,p,q );
+    
+[N_vec,dN_dxi,dN_deta] = N_define(N_xi,N_eta,dN_xi,dN_eta,p,q);
 	
 end

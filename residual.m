@@ -18,7 +18,7 @@ for e = 1:size(LM,1)
         sigma = computeStress(D,dN_dx,dN_dy,d,n_dof,e,IEN,n_en);
 		
 		for a = 1:n_en
-			[Ba,~] = BandStrain(dN_dx,dN_dy,a,d,n_dof,e,IEN);
+			Ba = Bcalc(dN_dx,dN_dy,a,d,n_dof,e,IEN);
             ba = Ba'*sigma;
 			for i = 1:n_dof
                 bf = getBodyForce(problemNumber);

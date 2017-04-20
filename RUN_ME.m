@@ -10,6 +10,12 @@ epsilon = 1e-12;
 %problem number
 problemNumber = 1;
 
+%displacement amount in problem 1
+displacement = 1;
+
+%element type
+elementType = 'rect'; %'rad' for radial, 'rect' for rectilinear
+
 %basis function order
 p = 2;
 q = p;
@@ -19,19 +25,13 @@ E = 1;
 nu = 0;
 n_dof = 2;
 
-%define mesh
+%define mesh geometry
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
 n = 2;
 m = 2;
 he_n = 1/n;
 he_m = 1/m;
-
-%element type
-elementType = 'rect'; %'rad' for radial, 'rect' for rectilinear
-
-%displacement amount in problem 1
-displacement = 1;
 
 if strcmp(elementType,'rect') == 1
     %define rectangular geometry

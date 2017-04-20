@@ -34,7 +34,7 @@ function [d] = NewtonRaphson(mesh, LM, IEN, ID, E, nu, p, q, m, n_dof, n_en, nod
             delta_i = 1;
             for L = 1:size(ID, 1)
                 for k = 1:n_dof
-                    if ID(L,k) ~= 0 %&& IDflag(L,k) > 0
+                    if ID(L,k) ~= 0
                         d((L-1)*(n_dof)+k) = d((L-1)*(n_dof)+k) + delta(delta_i);
                         delta_i = delta_i + 1;
                     end
