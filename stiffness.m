@@ -18,15 +18,15 @@ K = spalloc(max(max(max(LM))),max(max(max(LM))),max(max(max(LM)))*8*p);
 
             for a = 1:n_en
                 Ba = Bcalc(dN_dx,dN_dy,a);
-
+                temp = Ba'*D;
                 for b = 1:n_en
                     Bb = Bcalc(dN_dx,dN_dy,b);
-                    temp = Ba'*D*Bb;
+                    Ntemp = temp*Bb;
                     for i = 1:n_dof
                         for j = 1:n_dof
                             r = (a-1)*n_dof + i;
                             s = (b-1)*n_dof + j;
-                            k_e(r,s) = k_e(r,s) + temp(i,j)*W(igpt)*detJ;
+                            k_e(r,s) = k_e(r,s) + Ntemp(i,j)*W(igpt)*detJ;
                         end
                     end
                 end
