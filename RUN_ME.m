@@ -11,7 +11,7 @@ epsilon = 1e-12;
 problemNumber = 1;
 
 %basis function order
-p = 1;
+p = 2;
 q = p;
 
 %material parameters
@@ -22,8 +22,8 @@ n_dof = 2;
 %define mesh
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-n = 3;
-m = 3;
+n = 1;
+m = 1;
 he_n = 1/n;
 he_m = 1/m;
 
