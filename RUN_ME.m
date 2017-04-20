@@ -11,7 +11,7 @@ epsilon = 1e-12;
 problemNumber = 1;
 
 %basis function order
-p = 1;
+p = 2;
 q = p;
 
 %material parameters
