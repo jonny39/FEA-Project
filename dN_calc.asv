@@ -1,0 +1,49 @@
+function dN = dN_calc(z, a, p)
+    if p == 1
+        if a == 1
+			dN = -0.5;
+        elseif a == 2
+			dN = 0.5;
+		end
+    elseif p == 2
+        if a == 1
+            
+        elseif a == 
+    elseif p == 3
+        
+    end
+    
+    
+        elseif p == 2
+    %given the following for basis functions from pg 128:
+    %N1quad = 0.5xi(xi-1)
+    %N2quad = 1-xi^2
+    %N3quad = 0.5xi(xi+1)
+    for i = 1:length(xi_int)
+        N(1,i) = 0.5*xi_int(i)*(xi_int(i)-1);
+        N(2,i) = 1-xi_int(i)^2;
+        N(3,i) = 0.5*xi_int(i)*(xi_int(i)+1);
+        
+        dN_dxi(1,i) = xi_int(i)-0.5;
+        dN_dxi(2,i) = -2*xi_int(i);
+        dN_dxi(3,i) = xi_int(i)+0.5;
+    end  
+    
+elseif p == 3
+    %given the following for basis functions:
+    %N1cubic = (-1/16)(9xi^3-9xi^2-xi+1)
+    %N2cubic = (9/16)(3xi^3-xi^2-3xi+1)
+    %N3cubic = (-9/16)(3xi^3+xi^2-3xi-1)
+    %N4cubic = (1/16)(9xi^3+9xi^2-xi-1)
+    for i = 1:length(xi_int)
+        N(1,i) = (-1/16)*(9*xi_int(i)^3-9*xi_int(i)^2-xi_int(i)+1);
+        N(2,i) = (9/16)*(3*xi_int(i)^3-xi_int(i)^2-3*xi_int(i)+1);
+        N(3,i) = (-9/16)*(3*xi_int(i)^3+xi_int(i)^2-3*xi_int(i)-1);
+        N(4,i) = (1/16)*(9*xi_int(i)^3+9*xi_int(i)^2-xi_int(i)-1);
+        
+        dN_dxi(1,i) = (-1/16)*(27*xi_int(i)^2-18*xi_int(i)-1);
+        dN_dxi(2,i) = (9/16)*(9*xi_int(i)^2-2*xi_int(i)-3);
+        dN_dxi(3,i) = (-9/16)*(9*xi_int(i)^2+2*xi_int(i)-3);
+        dN_dxi(4,i) = (1/16)*(27*xi_int(i)^2+18*xi_int(i)-1);
+    end    
+end

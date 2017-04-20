@@ -1,10 +1,9 @@
 %returns Guass Quadrature locations and weights
 function [pts,W] = guassQuad(nInt)
-    if nInt == 1
-        pts = [0 0];
-        W = [4];
-    end
     switch nInt
+        case 1
+            pts = [0 0];
+            W = 4;
         case 2
             pts = [-sqrt(3)/3 sqrt(3)/3;...
                   sqrt(3)/3 sqrt(3)/3;...
