@@ -16,10 +16,10 @@ K = zeros(max(max(max(LM))),max(max(max(LM))));
             [detJ, dN_dx, dN_dy] = lagrange2Dspatial(pts, p, q, N, dN_dxi, dN_deta, nodes_e);
 
             for a = 1:n_en
-                [Ba,~] = BandStrain(dN_dx,dN_dy,a,d,n_dof,e,IEN);
+                Ba = Bcalc(dN_dx,dN_dy,a,d,n_dof,e,IEN);
 
                 for b = 1:n_en
-                    [Bb,~] = BandStrain(dN_dx,dN_dy,b,d,n_dof,e,IEN);
+                    Bb = Bcalc(dN_dx,dN_dy,b,d,n_dof,e,IEN);
                     temp = Ba'*D*Bb;
                     for i = 1:n_dof
                         for j = 1:n_dof
