@@ -62,7 +62,8 @@ n_en = size(nodes_e,1);
 [LM,ID] = LM_creator(IEN,mesh,n_dof,Geometry,problemNumber);
 
 %iterate with Newton Raphson
-dSolution = NewtonRaphson(mesh,LM,IEN,ID,E,nu,p,q,m,n_dof,n_en,nodes_e,problemNumber,Geometry,displacement, h,body_force);
+dSolution = NewtonRaphson(mesh, LM, IEN, ID, E, nu,...
+    p, q, m, n_dof, n_en, nodes_e,problemNumber,Geometry,displacement,h,body_force);
 
 %plot solution
 dSolution
