@@ -11,7 +11,7 @@ for e = 1:size(LM,1)
 	% Assembly element r_e
 	[pts, wts] = guassQuad(n_int);		% Get quadrature stuff
 	
-	for igpt = 1:n_int
+	for igpt = 1:n_int^2
 		[N, dN_dxi, dN_deta] = lagrange2D(pts(igpt,:), p, q); 
 		[detJ, dN_dx, dN_dy] = lagrange2Dspatial(dN_dxi, dN_deta, nodes_e(:,:,e));
         

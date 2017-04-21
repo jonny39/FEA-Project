@@ -18,12 +18,12 @@ h = [1 0 0 0]; %right top left bottom
 elementType = 'rect'; %'rad' for radial, 'rect' for rectilinear
 
 %basis function order
-p = 1;
+p = 2;
 q = p;
 
 %material parameters
 E = 1;
-nu = .1;
+nu = 0;
 n_dof = 2;
 
 %define mesh geometry
@@ -68,7 +68,7 @@ plotter(dSolution,mesh,plot_desired,m,n,n_dof)
 
 if isnan(sum(dSolution)) == 0
     load handel.mat
-%     sound(y,Fs)
+    sound(y,Fs)
 end
 
 

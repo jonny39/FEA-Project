@@ -1,4 +1,5 @@
-function [d] = NewtonRaphson(mesh, LM, IEN, ID, E, nu, p, q, m, n_dof, n_en, nodes_e,problemNumber,Geometry,displacement,h)
+function [d] = NewtonRaphson(mesh, LM, IEN, ID, E, nu,...
+    p, q, m, n_dof, n_en, nodes_e,problemNumber,Geometry,displacement,h)
 	if length(Geometry) == 2 %rectangular mesh
         geoLimit = Geometry(1);
     elseif length(Geometry) == 4 %radial mesh

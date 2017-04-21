@@ -12,7 +12,7 @@ K = spalloc(max(max(max(LM))),max(max(max(LM))),max(max(max(LM)))*8*p);
         k_e = k_e*0;
 
         % Assembly element k_e
-        for igpt = 1:n_int
+        for igpt = 1:n_int^2
             [~, dN_dxi, dN_deta] = lagrange2D(pts(igpt,:), p, q); 
             [detJ, dN_dx, dN_dy] = lagrange2Dspatial(dN_dxi, dN_deta, nodes_e);
 
