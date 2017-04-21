@@ -8,7 +8,15 @@ function D = buildD(E, nu)
 % 		 lambda_bar         2*mu+lambda_bar     0;
 % 		 0             		0               	mu];
 
+<<<<<<< HEAD
 D = [2*mu+lambda    lambda          0;
+=======
+% 	D = E/(1-nu^2)*[1    nu    0;
+%                     nu   1     0;
+%                     0    0     (1-nu)/2];
+
+	D = [2*mu+lambda    lambda          0;
+>>>>>>> 3bac41bcfc331e075dde1b06d5f7817ecfa4dcc4
 		 lambda         2*mu+lambda     0;
 		 0             		0               	mu];
 
