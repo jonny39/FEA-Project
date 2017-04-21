@@ -8,7 +8,7 @@ format compact
 epsilon = 1e-12;
 
 %problem number
-problemNumber =  2;
+problemNumber =  1;
 
 %displacement amount on right face
 displacement = [1 0]; %x y
@@ -24,7 +24,7 @@ q = p;
 
 %material parameters
 E = 1;
-nu = .1;
+nu = .2;
 n_dof = 2;
 
 %define mesh geometry
