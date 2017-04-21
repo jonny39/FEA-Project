@@ -1,7 +1,7 @@
 function mesh = GenerateMesh(elementType,Geometry,m,n,p,q)
     if strcmp(elementType,'rect') == 1
-    N = Geometry(1);
-    M = Geometry(2);
+    M = Geometry(1);
+    N = Geometry(2);
     elseif strcmp(elementType,'rad') == 1
     theta1 = Geometry(1);
     theta2 = Geometry(2);

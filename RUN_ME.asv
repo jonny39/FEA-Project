@@ -8,23 +8,22 @@ format compact
 epsilon = 1e-12;
 
 %problem number
-problemNumber =  2;
+problemNumber =  1;
 
 %displacement amount on right face
 displacement = [1 0]; %x y
-h = [0.01 0]; %x y
-body_force = [0 0];
+h = [1 0 0 0]; %right top left bottom
 
 %element type
 elementType = 'rect'; %'rad' for radial, 'rect' for rectilinear
 
 %basis function order
-p = 1;
+p = 2;
 q = p;
 
 %material parameters
 E = 1;
-nu = .1;
+nu = 0;
 n_dof = 2;
 
 %define mesh geometry
@@ -32,8 +31,6 @@ n_dof = 2;
 %for rectangular nodes, n is horizontal, m is vertical
 n = 4;
 m = 4;
-n = 20;
-m = 20;
 he_n = 1/n;
 he_m = 1/m;
 
@@ -62,8 +59,7 @@ n_en = size(nodes_e,1);
 [LM,ID] = LM_creator(IEN,mesh,n_dof,Geometry,problemNumber);
 
 %iterate with Newton Raphson
-dSolution = NewtonRaphson(mesh, LM, IEN, ID, E, nu,...
-    p, q, m, n_dof, n_en, nodes_e,problemNumber,Geometry,displacement,h,body_force);
+dSolution = NewtonRaphson(mesh,LM,IEN,ID,E,nu,p,q,m,n_dof,n_en,nodes_e,problemNumber,Geometry,displacement, h);
 
 %plot solution
 dSolution
@@ -72,7 +68,7 @@ plotter(dSolution,mesh,plot_desired,m,n,n_dof)
 
 if isnan(sum(dSolution)) == 0
     load handel.mat
-%     sound(y,Fs)
+    sound(y,Fs)
 end
 
 

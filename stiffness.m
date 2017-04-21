@@ -2,8 +2,8 @@ function [K] = stiffness(LM, D, n_int, p, q, n_dof, n_en, nodes_e)
 
 % Initializations
 k_e = zeros((n_dof)*(n_en));
-% K = zeros(max(max(max(LM))),max(max(max(LM))));
-K = spalloc(max(max(max(LM))),max(max(max(LM))),max(max(max(LM)))*8*p);
+K = zeros(max(max(max(LM))),max(max(max(LM))));
+% K = spalloc(max(max(max(LM))),max(max(max(LM))),max(max(max(LM)))*8*p);
         
 % Get quadrature stuff
 [pts, W] = guassQuad(n_int);
@@ -12,7 +12,7 @@ K = spalloc(max(max(max(LM))),max(max(max(LM))),max(max(max(LM)))*8*p);
         k_e = k_e*0;
 
         % Assembly element k_e
-        for igpt = 1:n_int
+        for igpt = 1:n_int^2
             [~, dN_dxi, dN_deta] = lagrange2D(pts(igpt,:), p, q); 
             [detJ, dN_dx, dN_dy] = lagrange2Dspatial(dN_dxi, dN_deta, nodes_e);
 
