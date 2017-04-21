@@ -5,6 +5,7 @@ n_el = n*m;
 
 %number of nodes per element
 nen = 4;
+
 %zero IEN
 IEN = zeros(n_el,4);
 
