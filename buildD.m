@@ -4,8 +4,12 @@ function D = buildD(E, nu)
 	
 	lambda_bar = 2*mu*lambda/(lambda + 2*mu);
 	
-	D = [2*mu+lambda_bar    lambda_bar          0;
-		 lambda_bar         2*mu+lambda_bar     0;
+% 	D = [2*mu+lambda_bar    lambda_bar          0;
+% 		 lambda_bar         2*mu+lambda_bar     0;
+% 		 0             		0               	mu];
+
+D = [2*mu+lambda    lambda          0;
+		 lambda         2*mu+lambda     0;
 		 0             		0               	mu];
 
 end

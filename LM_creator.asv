@@ -1,4 +1,4 @@
-function [ LM,ID ] = LM_creator(IEN, mesh, ndof, Geometry,displacement)
+function [ LM,ID ] = LM_creator(IEN, mesh, ndof, Geometry, probNumber)
 if length(Geometry) == 2 %rectangular mesh
     geoLimit = Geometry(1);
 elseif length(Geometry) == 4 %radial mesh
@@ -22,26 +22,19 @@ for node = 1:size(mesh,1)
     if mesh(node,1) == 0
         constraint(node,:) = 0;        
     end
-    if displacement(1) ~= 0 
+    if probNumber == 1
         if mesh(node,1) == geoLimit
             constraint(node,1) = 0;
         end
-    end
-    if displacement(2) ~= 0
-        if mesh(node,1) == geoLimit
+        if mesh(node,2) == 0
+            if mesh(node,1) == geoLimit
+                constraint(node,2) = 0;
+            end
+        end
+        if mesh(node,2) == geoLimit
             constraint(node,2) = 0;
         end
-    end
-%         if mesh(node,2) == 0
-%             if mesh(node,1) == geoLimit
-%                 constraint(node,2) = 0;
-%             end
-%         end
-%         if mesh(node,2) == geoLimit
-%             if mesh(node,1) == geoLimit
-%                 constraint(node,2) = 0;
-%             end
-%         end
+    end    
 end
 
 ID = ID.*constraint;

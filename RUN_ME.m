@@ -11,7 +11,7 @@ epsilon = 1e-12;
 problemNumber =  1;
 
 %displacement amount on right face
-displacement = [0.01 0]; %x y
+displacement = [0.3 0.00001]; %x y
 h = [0.01 0]; %x y
 body_force = [0 0];
 
@@ -19,7 +19,7 @@ body_force = [0 0];
 elementType = 'rect'; %'rad' for radial, 'rect' for rectilinear
 
 %basis function order
-p = 2;
+p = 1;
 q = p;
 
 %material parameters
@@ -30,8 +30,8 @@ n_dof = 2;
 %define mesh geometry
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-n = 5;
-m = 5;
+m = 10;
+n = 10;
 he_n = 1/n;
 he_m = 1/m;
 
@@ -57,7 +57,7 @@ nodes_e = elementConstruction(p,q,mesh,IEN);
 n_en = size(nodes_e,1);
 
 %generate LM matrix
-[LM,ID] = LM_creator(IEN,mesh,n_dof,Geometry,problemNumber);
+[LM,ID] = LM_creator(IEN,mesh,n_dof,Geometry,displacement);
 
 %iterate with Newton Raphson
 dSolution = NewtonRaphson(mesh, LM, IEN, ID, E, nu,...
