@@ -11,7 +11,7 @@ epsilon = 1e-12;
 problemNumber =  1;
 
 %displacement amount on right face
-displacement = [.3 0.001]; %x y
+displacement = [.3 0]; %x y
 h = [0.01 0]; %x y
 body_force = [0 0];
 
@@ -19,19 +19,19 @@ body_force = [0 0];
 elementType = 'rect'; %'rad' for radial, 'rect' for rectilinear
 
 %basis function order
-p = 1;
+p = 2;
 q = p;
 
 %material parameters
 E = 1;
-nu = .3;
+nu = .2;
 n_dof = 2;
 
 %define mesh geometry
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-m = 10;
-n = 10;
+m = 5;
+n = 5;
 he_n = 1/n;
 he_m = 1/m;
 
