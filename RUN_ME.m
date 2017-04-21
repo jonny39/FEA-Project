@@ -32,8 +32,6 @@ n_dof = 2;
 %for rectangular nodes, n is horizontal, m is vertical
 n = 4;
 m = 4;
-n = 20;
-m = 20;
 he_n = 1/n;
 he_m = 1/m;
 
