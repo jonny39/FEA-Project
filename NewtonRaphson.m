@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 function [d] = NewtonRaphson(mesh, LM, IEN, ID, E, nu,...
     p, q, m, n_dof, n_en, nodes_e,problemNumber,Geometry,displacement,h)
+=======
+function [d] = NewtonRaphson(mesh, LM, IEN, ID, E, nu, p, q, m, n_dof, n_en, nodes_e,problemNumber,Geometry,displacement,h,body_force)
+>>>>>>> 58d66b2f00573c88ce9f6ae94009642c5b78af8a
 	if length(Geometry) == 2 %rectangular mesh
         geoLimit = Geometry(1);
     elseif length(Geometry) == 4 %radial mesh
@@ -26,7 +30,8 @@ function [d] = NewtonRaphson(mesh, LM, IEN, ID, E, nu,...
 	
 	while n < n_max
 		F_inc = F_inc0*(n+1)/n_max;
-		R0 = residual(F_inc, LM, IEN, d, D, n_int,p, q, n_dof, n_en, nodes_e,problemNumber,h,geoLimit);
+		R0 = residual(F_inc, LM, IEN, d, D, n_int,...
+                        p, q, n_dof, n_en, nodes_e,problemNumber,h,geoLimit,body_force);
 		R = R0;
 		i = 0;
 		
@@ -43,7 +48,8 @@ function [d] = NewtonRaphson(mesh, LM, IEN, ID, E, nu,...
                 end
             end
             
-			R = residual(F_inc, LM, IEN, d, D, n_int,p, q, n_dof, n_en, nodes_e,problemNumber,h,geoLimit);
+			R = residual(F_inc, LM, IEN, d, D, n_int,...
+                        p, q, n_dof, n_en, nodes_e,problemNumber,h,geoLimit,body_force);
 			
 			if norm(R) <= norm(R0)*epsilon
 				break;

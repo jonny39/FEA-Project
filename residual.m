@@ -1,5 +1,5 @@
 function [R] = residual(F_inc, LM, IEN, d, D, n_int,...
-                        p, q, n_dof, n_en, nodes_e,problemNumber,h,geoLimit)
+                        p, q, n_dof, n_en, nodes_e,problemNumber,h,geoLimit,body_force)
 
 % Initializations
 r_e = zeros(n_en*n_dof+n_dof,1);
@@ -21,7 +21,7 @@ for e = 1:size(LM,1)
 			Ba = Bcalc(dN_dx,dN_dy,a);
             ba = Ba'*sigma;
 			for i = 1:n_dof
-                bf = getBodyForce(problemNumber);
+                bf = body_force(i);
 				r = (a-1)*n_dof + i;
 				r_e(r) = r_e(r) + (bf*N(a)*F_inc - ba(i))*wts(igpt)*detJ;
 			end
@@ -29,7 +29,11 @@ for e = 1:size(LM,1)
     end
     
     %now add Neumann
-    r_e2 = neumann(n_int, n_en, n_dof,p,q,h,nodes_e,problemNumber,geoLimit);
+    if problemNumber == 2
+        r_e2 = neumann(n_int, n_en, n_dof,p,q,h,nodes_e,problemNumber,geoLimit);
+    else
+        r_e2 = zeros(size(r_e));
+    end
     
     r_e = r_e + r_e2;
 	

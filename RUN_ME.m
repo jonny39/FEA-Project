@@ -8,11 +8,12 @@ format compact
 epsilon = 1e-12;
 
 %problem number
-problemNumber =  1;
+problemNumber =  2;
 
 %displacement amount on right face
 displacement = [1 0]; %x y
-h = [1 0 0 0]; %right top left bottom
+h = [0.01 0]; %x y
+body_force = [0 0];
 
 %element type
 elementType = 'rect'; %'rad' for radial, 'rect' for rectilinear
@@ -29,8 +30,13 @@ n_dof = 2;
 %define mesh geometry
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
+<<<<<<< HEAD
 n = 4;
 m = 4;
+=======
+n = 20;
+m = 20;
+>>>>>>> 58d66b2f00573c88ce9f6ae94009642c5b78af8a
 he_n = 1/n;
 he_m = 1/m;
 
@@ -59,7 +65,7 @@ n_en = size(nodes_e,1);
 [LM,ID] = LM_creator(IEN,mesh,n_dof,Geometry,problemNumber);
 
 %iterate with Newton Raphson
-dSolution = NewtonRaphson(mesh,LM,IEN,ID,E,nu,p,q,m,n_dof,n_en,nodes_e,problemNumber,Geometry,displacement, h);
+dSolution = NewtonRaphson(mesh,LM,IEN,ID,E,nu,p,q,m,n_dof,n_en,nodes_e,problemNumber,Geometry,displacement, h,body_force);
 
 %plot solution
 dSolution
