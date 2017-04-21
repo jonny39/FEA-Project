@@ -8,16 +8,17 @@ format compact
 epsilon = 1e-12;
 
 %problem number
-problemNumber = 1;
+problemNumber =  1;
 
-%displacement amount in problem 1
-displacement = 1;
+%displacement amount on right face
+displacement = [1 0]; %x y
+h = [1 0 0 0]; %right top left bottom
 
 %element type
 elementType = 'rect'; %'rad' for radial, 'rect' for rectilinear
 
 %basis function order
-p = 2;
+p = 1;
 q = p;
 
 %material parameters
@@ -51,14 +52,14 @@ mesh = GenerateMesh(elementType,Geometry,m,n,p,q);
 IEN = LagrangeIEN(m,p,n,q);
 %construct matrix of node locations for each element
 %nodes_el has dimensions (node #,nodal locations,element #)
-nodes_el = elementConstruction(p,q,mesh,IEN);
-n_en = size(nodes_el,1);
+nodes_e = elementConstruction(p,q,mesh,IEN);
+n_en = size(nodes_e,1);
 
 %generate LM matrix
 [LM,ID] = LM_creator(IEN,mesh,n_dof,Geometry,problemNumber);
 
 %iterate with Newton Raphson
-dSolution = NewtonRaphson(mesh,LM,IEN,ID,E,nu,p,q,m,n_dof,n_en,nodes_el,problemNumber,Geometry,displacement);
+dSolution = NewtonRaphson(mesh,LM,IEN,ID,E,nu,p,q,m,n_dof,n_en,nodes_e,problemNumber,Geometry,displacement, h);
 
 %plot solution
 dSolution
