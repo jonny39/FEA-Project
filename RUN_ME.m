@@ -11,8 +11,8 @@ epsilon = 1e-12;
 problemNumber =  1;
 
 %displacement amount on right face
-displacement = [.3 0.001]; %x y
-h = [0.01 0]; %x y
+displacement = [.2 0.]; %x y
+h = [0.05 0]; %x y
 body_force = [0 0];
 
 %element type
@@ -24,14 +24,14 @@ q = p;
 
 %material parameters
 E = 1;
-nu = .3;
+nu = 0.001;
 n_dof = 2;
 
 %define mesh geometry
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-m = 10;
-n = 10;
+m = 2;
+n = 2;
 he_n = 1/n;
 he_m = 1/m;
 
@@ -47,6 +47,14 @@ elseif strcmp(elementType,'rad') == 1
     Geometry(4) = pi/2; %ending angle
 end
 
+%what value needs to be plotted. 1 = x displacement, 2 = y displacement, 
+%3 = von mises stress, 4 = sigma x, 5 = sigma y, 6 = torsional stress
+%7 = node locations
+plot_desired = 2;
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %create mesh
 mesh = GenerateMesh(elementType,Geometry,m,n,p,q);
 %initialize IEN
@@ -57,7 +65,7 @@ nodes_e = elementConstruction(p,q,mesh,IEN);
 n_en = size(nodes_e,1);
 
 %generate LM matrix
-[LM,ID] = LM_creator(IEN,mesh,n_dof,Geometry,displacement);
+[LM,ID] = LM_creator(IEN,mesh,n_dof,Geometry,displacement,problemNumber);
 
 %iterate with Newton Raphson
 dSolution = NewtonRaphson(mesh, LM, IEN, ID, E, nu,...
@@ -65,7 +73,6 @@ dSolution = NewtonRaphson(mesh, LM, IEN, ID, E, nu,...
 
 %plot solution
 dSolution
-plot_desired = 4;
 plotter(dSolution,mesh,plot_desired,m,n,n_dof)
 
 if isnan(sum(dSolution)) == 0

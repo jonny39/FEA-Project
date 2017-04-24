@@ -15,5 +15,9 @@ function D = buildD(E, nu)
 	D = [2*mu+lambda    lambda          0;
 		 lambda         2*mu+lambda     0;
 		 0             		0               	mu];
+% 
+% D = [E nu*E 0;
+%     nu*E E 0;
+%     0 0 mu];
 
 end

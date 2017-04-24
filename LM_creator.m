@@ -1,4 +1,4 @@
-function [ LM,ID ] = LM_creator(IEN, mesh, ndof, Geometry,displacement)
+function [ LM,ID ] = LM_creator(IEN, mesh, ndof, Geometry,displacement,problemNumber)
 if length(Geometry) == 2 %rectangular mesh
     geoLimit = Geometry(1);
 elseif length(Geometry) == 4 %radial mesh
@@ -19,29 +19,35 @@ end
 constraint = ones(size(mesh,1),ndof);
 
 for node = 1:size(mesh,1)
-    if mesh(node,1) == 0
-        constraint(node,:) = 0;        
-    end
+    %     if mesh(node,1) == 0
+%         constraint(node,:) = 0;  %constrain all left nodes in all directions      
+%     end
+%     
     if displacement(1) ~= 0 
         if mesh(node,1) == geoLimit
-            constraint(node,1) = 0;
+            constraint(node,1) = 0; %if a displacement in x on the right side is defined
         end
     end
     if displacement(2) ~= 0
         if mesh(node,1) == geoLimit
-            constraint(node,2) = 0;
+            constraint(node,2) = 0;%if a displacement in y on the right side is defined
         end
     end
-%         if mesh(node,2) == 0
-%             if mesh(node,1) == geoLimit
-%                 constraint(node,2) = 0;
-%             end
-%         end
-%         if mesh(node,2) == geoLimit
-%             if mesh(node,1) == geoLimit
-%                 constraint(node,2) = 0;
-%             end
-%         end
+    
+    
+    if mesh(node,1) == 0
+        constraint(node,1) = 0;  %constrain all left nodes in x   
+    end
+%     if mesh(node,1) == 0
+%         constraint(node,2) = 0;  %constrain all left nodes in y     
+%     end
+%     if mesh(node,2) == 0
+%         constraint(node,1) = 0;  %constrain all bottom nodes in x      
+%     end
+    if mesh(node,2) == 0
+        constraint(node,2) = 0;  %constrain all bottom nodes in y    
+    end
+
 end
 
 ID = ID.*constraint;
