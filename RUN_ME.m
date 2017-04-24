@@ -11,13 +11,8 @@ epsilon = 1e-12;
 problemNumber =  1;
 
 %displacement amount on right face
-<<<<<<< HEAD
 displacement = [.2 0.]; %x y
 h = [0.05 0]; %x y
-=======
-displacement = [.3 0]; %x y
-h = [0.01 0]; %x y
->>>>>>> 80744d86599cb64c005cef217781dce6ed9294b8
 body_force = [0 0];
 
 %element type
@@ -29,23 +24,14 @@ q = p;
 
 %material parameters
 E = 1;
-<<<<<<< HEAD
 nu = 0.001;
-=======
-nu = .2;
->>>>>>> 80744d86599cb64c005cef217781dce6ed9294b8
 n_dof = 2;
 
 %define mesh geometry
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-<<<<<<< HEAD
 m = 2;
 n = 2;
-=======
-m = 5;
-n = 5;
->>>>>>> 80744d86599cb64c005cef217781dce6ed9294b8
 he_n = 1/n;
 he_m = 1/m;
 
