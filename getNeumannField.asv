@@ -21,11 +21,13 @@ elseif problemNumber == 3
         
         x = [-1 1];
         v = [theta(1) theta(size(theta,1))];
-        vq = interp1(x,v,x(2));
+        vq
 
         if radius <= geoLimit
-            h_applied(1) = cos(vq)*sqrt(h(1)^2+h(2)^2);
-            h_applied(2) = sin(vq)*sqrt(h(1)^2+h(2)^2);
+            x_avg = nodes_e(1,1)+ nodes_e(1,1)
+            theta = atan(x(2)/x(1));
+            h_applied(1) = cos(theta)*sqrt(h(1)^2+h(2)^2);
+            h_applied(2) = sin(theta)*sqrt(h(1)^2+h(2)^2);
         end
     end
 end

@@ -4,7 +4,7 @@ function [d] = NewtonRaphson(mesh, LM, IEN, ID, E, nu,...
 	if length(Geometry) == 2 %rectangular mesh
         geoLimit = Geometry(1);
     elseif length(Geometry) == 4 %radial mesh
-        geoLimit = Geometry(2); %outside radius
+        geoLimit = Geometry(1); %outside radius
     end
     
     D = buildD(E, nu); 	% Inputs are material properties
