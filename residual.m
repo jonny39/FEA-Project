@@ -30,7 +30,7 @@ for e = 1:size(LM,1)
     
     %now add Neumann
     if problemNumber == 2
-        r_e = r_e + neumann(n_int, n_en, n_dof,p,q,h,nodes_e,problemNumber,geoLimit);
+        r_e = r_e + neumann(n_int, n_en, n_dof,p,q,h,nodes_e(:,:,e),problemNumber,geoLimit);
 %         r_e2 = neumann(n_int, n_en, n_dof,p,q,h,nodes_e,problemNumber,geoLimit);
 %     else
 %         r_e2 = zeros(size(r_e));
