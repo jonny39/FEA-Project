@@ -8,15 +8,15 @@ format compact
 epsilon = 1e-12;
 
 %problem number
-problemNumber =  1;
+problemNumber =  3;
 
 %displacement amount on right face
 displacement = [10 0]; %x y
-h = [.1 0]; %x y
+h = [0.001 0]; %x y
 body_force = [0 0];
 
 %element type
-elementType = 'rect'; %'rad' for radial, 'rect' for rectilinear
+elementType = 'rad'; %'rad' for radial, 'rect' for rectilinear
 
 %basis function order
 p = 1;

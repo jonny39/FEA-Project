@@ -29,12 +29,11 @@ for e = 1:size(LM,1)
 	end
     
     %now add Neumann
-    if problemNumber == 2
+    if problemNumber ~= 1
         r_e = r_e + neumann(n_int, n_en, n_dof,p,q,h,nodes_e(:,:,e),problemNumber,geoLimit);
     end
 
 
-    	
 	% Assemble global R
 	for a = 1:n_en
         for i = 1:n_dof
