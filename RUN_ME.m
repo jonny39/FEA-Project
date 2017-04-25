@@ -11,7 +11,7 @@ epsilon = 1e-12;
 problemNumber =  1;
 
 %displacement amount on right face
-displacement = [.2 0.]; %x y
+displacement = [.2 0]; %x y
 h = [0.05 0]; %x y
 body_force = [0 0];
 
@@ -24,14 +24,14 @@ q = p;
 
 %material parameters
 E = 1;
-nu = 0.001;
+nu = 0.3;
 n_dof = 2;
 
 %define mesh geometry
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-m = 2;
-n = 2;
+m = 5;
+n = 5;
 he_n = 1/n;
 he_m = 1/m;
 
@@ -50,7 +50,7 @@ end
 %what value needs to be plotted. 1 = x displacement, 2 = y displacement, 
 %3 = von mises stress, 4 = sigma x, 5 = sigma y, 6 = torsional stress
 %7 = node locations
-plot_desired = 2;
+plot_desired = 7;
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

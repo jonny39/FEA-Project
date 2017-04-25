@@ -17,16 +17,16 @@ for e = 1:size(LM,1)
         
         sigma = computeStress(D,dN_dx,dN_dy,d,n_dof,e,IEN,n_en);
 		
-		for a = 1:n_en
+        for a = 1:n_en
 			Ba = Bcalc(dN_dx,dN_dy,a);
             ba = Ba'*sigma;
-			for i = 1:n_dof
+            for i = 1:n_dof
                 bf = body_force(i);
 				r = (a-1)*n_dof + i;
 				r_e(r) = r_e(r) + (bf*N(a)*F_inc - ba(i))*wts(igpt)*detJ;
-			end
-		end
-    end
+            end
+        end
+	end
     
     %now add Neumann
     if problemNumber == 2
@@ -36,16 +36,16 @@ for e = 1:size(LM,1)
     end
     
     r_e = r_e + r_e2;
-	
+    	
 	% Assemble global R
 	for a = 1:n_en
-		for i = 1:n_dof
+        for i = 1:n_dof
 			loc = LM(e, a, i);
-            if loc == 0; break; end
-            
-			r = (a-1)*n_dof + i;
-			R(loc) = R(loc) + r_e(r);
+            if loc > 0 
 
-		end
-    end
+                r = (a-1)*n_dof + i;
+                R(loc) = R(loc) + r_e(r);
+            end
+        end
+	end
 end
