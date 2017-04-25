@@ -42,7 +42,7 @@ for node = 1:size(mesh,1)
         end
 
         if mesh(node,2) == 0
-            constraint(node,2) = 0; %horizontal symetry on cylinder
+            constraint(node,2) = 0; %horizontal symetry on 
         end
     end
     
