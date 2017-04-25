@@ -30,13 +30,8 @@ n_dof = 2;
 %define mesh geometry
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-<<<<<<< HEAD
 m = 5;
 n = 5;
-=======
-m = 2; 
-n = 2;
->>>>>>> e8576acd1e16eb99ec3820f649053e2c6dd1100d
 he_n = 1/n;
 he_m = 1/m;
 
