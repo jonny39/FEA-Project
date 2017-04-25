@@ -12,7 +12,7 @@ problemNumber =  2;
 
 %displacement amount on right face
 displacement = [0 0]; %x y
-h = [.05 0]; %x y
+h = [.1 0]; %x y
 body_force = [0 0];
 
 %element type
@@ -23,15 +23,16 @@ p = 1;
 q = p;
 
 %material parameters
-E = 1e7;
-nu = .3;
+E = 1;
+nu = 0.0;
 n_dof = 2;
 
 %define mesh geometry
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-m = 2;
-n = 2;
+m = 10;
+n = 10;
+
 he_n = 1/n;
 he_m = 1/m;
 
@@ -73,7 +74,7 @@ dSolution = NewtonRaphson(mesh, LM, IEN, ID, E, nu,...
 
 %plot solution
 dSolution
-plotter(dSolution,mesh,plot_desired,m,n,n_dof,LM_plot)
+plotter(dSolution,mesh,plot_desired,m,n,n_dof,LM_plot,E,nu,n_en,p,q,nodes_e,IEN)
 
 if isnan(sum(dSolution)) == 0
     load handel.mat

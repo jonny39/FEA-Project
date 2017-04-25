@@ -2,8 +2,8 @@ function [K] = stiffness(LM, D, n_int, p, q, n_dof, n_en, nodes_e)
 
 % Initializations
 k_e = zeros((n_dof)*(n_en));
-K = zeros(max(max(max(LM))),max(max(max(LM))));
-% K = spalloc(max(max(max(LM))),max(max(max(LM))),max(max(max(LM)))*8*p);
+% K = zeros(max(max(max(LM))),max(max(max(LM))));
+K = spalloc(max(max(max(LM))),max(max(max(LM))),max(max(max(LM)))*8*p);
         
 % Get quadrature stuff
 [pts, W] = guassQuad(n_int);
