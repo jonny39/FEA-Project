@@ -60,9 +60,6 @@ switch plot_desired
     case 3 %von mises
         D = buildD(E, nu);
         
-%         nnx = m+1+m*(p-1);
-%         nny = n+1+n*(q-1);
-        
         x_locations = mesh(1:(m+1),1);
         y_locations = zeros(n+1,1);
         for j = 1:(n+1)

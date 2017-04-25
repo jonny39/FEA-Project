@@ -8,10 +8,10 @@ format compact
 epsilon = 1e-12;
 
 %problem number
-problemNumber =  1;
+problemNumber =  2;
 
 %displacement amount on right face
-displacement = [0.1 0]; %x y
+displacement = [0 0]; %x y
 h = [.05 0]; %x y
 body_force = [0 0];
 
@@ -24,7 +24,7 @@ q = p;
 
 %material parameters
 E = 1e7;
-nu = 0.3;
+nu = .3;
 n_dof = 2;
 
 %define mesh geometry
@@ -73,7 +73,7 @@ dSolution = NewtonRaphson(mesh, LM, IEN, ID, E, nu,...
 
 %plot solution
 dSolution
-plotter(dSolution,mesh,plot_desired,m,n,n_dof,LM_plot,E,nu,n_en,p,q,nodes_e,IEN)
+plotter(dSolution,mesh,plot_desired,m,n,n_dof,LM_plot)
 
 if isnan(sum(dSolution)) == 0
     load handel.mat

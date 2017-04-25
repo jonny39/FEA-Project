@@ -1,4 +1,4 @@
-function [ LM,ID ] = LM_creator(IEN, mesh, ndof, Geometry,displacement,problemNumber)
+function [ LM,ID,LM_plot ] = LM_creator(IEN, mesh, ndof, Geometry,displacement,problemNumber)
 if length(Geometry) == 2 %rectangular mesh
     geoLimit = Geometry(1);
 elseif length(Geometry) == 4 %radial mesh
@@ -50,6 +50,7 @@ for node = 1:size(mesh,1)
 
 end
 
+ID_plot = ID;
 ID = ID.*constraint;
 
 %reset the numbers so as to increase from 1
@@ -79,6 +80,16 @@ for i = 1:size(IEN,1)
     end
 end
 
+
+LM_plot = zeros(size(IEN,1),size(IEN,2),ndof);
+for i = 1:size(IEN,1)
+    for j = 1:size(IEN,2)
+        for k = 1:size(LM,3)
+            LM_plot(i,j,k) = ID_plot(IEN(i,j),k);
+        end
+    end
+end
+LM_plot = LM_plot(:,:,2)/2;
 
 end
 
