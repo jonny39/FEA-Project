@@ -8,10 +8,10 @@ format compact
 epsilon = 1e-12;
 
 %problem number
-problemNumber =  1;
+problemNumber = 1;
 
 %displacement amount on right face
-displacement = [10 0]; %x y
+displacement = [1 0]; %x y
 h = [.1 0]; %x y
 body_force = [0 0];
 
@@ -24,14 +24,14 @@ q = p;
 
 %material parameters
 E = 1;
-nu = 0.1;
+nu = 0.3;
 n_dof = 2;
 
 %define mesh geometry
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-m = 10;
-n = 10;
+m = 3;
+n = 3;
 
 he_n = 1/n;
 he_m = 1/m;

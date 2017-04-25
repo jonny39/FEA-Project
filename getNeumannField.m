@@ -6,7 +6,7 @@ h_applied = zeros(2,1);
 if problemNumber == 1
 %     h = 0;
 elseif problemNumber == 2
-    if nodes_e(2,1) == geoLimit
+    if max(nodes_e(:,1)) == geoLimit
         h_applied(1) = h(1);
         h_applied(2) = h(2);
     end
