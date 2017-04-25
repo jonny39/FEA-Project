@@ -45,9 +45,9 @@ function [d] = NewtonRaphson(mesh, LM, IEN, ID, E, nu,...
                 end
             end
             
-			R = residual(F_inc, LM, IEN, d, D, n_int,...
+            R = residual(F_inc, LM, IEN, d, D, n_int,...
                         p, q, n_dof, n_en, nodes_e,problemNumber,h,geoLimit,body_force);
-			
+			                    
 			if norm(R) <= norm(R0)*epsilon
 				break;
 			end
