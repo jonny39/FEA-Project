@@ -268,7 +268,7 @@ D = buildD(E, nu);
                 z(row,column) = sigma(3);
             end
         end
-        [C,h] = contourf(x_locations,y_locations,z);
+        [C,h] = surf(x_locations,y_locations,z);
         clabel(C,h)
         
         
