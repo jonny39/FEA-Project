@@ -8,42 +8,34 @@ format compact
 epsilon = 1e-12;
 
 %problem number
-problemNumber = 1;
+problemNumber = 2;
 
 %displacement amount on right face
-<<<<<<< HEAD
-displacement = [.6 0]; %x y
-=======
-displacement = [1 0]; %x,y or r,theta 
->>>>>>> 182670d8d55a7e1b4dd00797f1d1f93d75cb867b
-h = [0 0]; %x y
+displacement = [0 0]; %x y
+h = [1000 0]; %x y
 body_force = [0 0];
 
 %element type
-<<<<<<< HEAD
-elementType = 'rad'; %'rad' for radial, 'rect' for rectilinear
-=======
 if problemNumber ~= 3
     elementType = 'rect';
 else
     elementType = 'rad'; %'rad' for radial, 'rect' for rectilinear
 end
->>>>>>> 36723a7e335dcb7ad364b2532543796706b578c8
 
 %basis function order
-p = 1;
+p = 2;
 q = p;
 
 %material parameters
-E = 1;
-nu = .3;
+E = 1e7;
+nu = 0.3;
 n_dof = 2;
 
 %define mesh geometry
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-m = 4;
-n = 4;
+m = 10;
+n = 10;
 
 he_n = 1/n;
 he_m = 1/m;
