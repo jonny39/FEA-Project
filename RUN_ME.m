@@ -16,7 +16,11 @@ h = [0 0]; %x y
 body_force = [0 0];
 
 %element type
-elementType = 'rect'; %'rad' for radial, 'rect' for rectilinear
+if problemNumber ~= 3
+    elementType = 'rect';
+else
+    elementType = 'rad'; %'rad' for radial, 'rect' for rectilinear
+end
 
 %basis function order
 p = 1;
@@ -30,8 +34,8 @@ n_dof = 2;
 %define mesh geometry
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-m = 10;
-n = 10;
+m = 4;
+n = 4;
 
 he_n = 1/n;
 he_m = 1/m;
@@ -51,7 +55,7 @@ end
 %what value needs to be plotted. 1 = x displacement, 2 = y displacement, 
 %3 = von mises stress, 4 = sigma x, 5 = sigma y, 6 = torsional stress
 %7 = node locations
-plot_desired = 3;
+plot_desired = 7;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
