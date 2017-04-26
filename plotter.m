@@ -96,12 +96,12 @@ switch plot_desired
                 sigma = computeStress(D,dN_dx,dN_dy,d,ndof,e,IEN,n_en);
                 von_mises = sqrt(sigma(1)^2 - sigma(1)*sigma(2) + sigma(2)^2 + 3*sigma(3)^2);
                 
-                loc = LM_plot(e,node)
+                loc = LM_plot(e,node);
                 
                 %what column it's on
-                column = mod(loc-1,(m+1))+1
+                column = mod(loc-1,(m+1))+1;
                 %what row it's on
-                row = floor((loc-1)/(1+m))+1
+                row = floor((loc-1)/(1+m))+1;
                 
                 z(row,column) = von_mises;
                 x_locations(row,column) = mesh(loc,1);
