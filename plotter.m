@@ -1,4 +1,4 @@
-function [  ] = plotter( d,mesh,plot_desired,m,n,n_dof,LM_plot,E,nu,n_en,p,q,nodes_e,IEN )
+function plotter(d,mesh,plot_desired,m,n,ndof,LM_plot,E,nu,n_en,p,q,nodes_e,IEN)
 %This function plots the solution
 
 %what value needs to be plotted. 1 = x displacement, 2 = y displacement, 
@@ -93,7 +93,7 @@ switch plot_desired
                 [N, dN_dxi, dN_deta] = lagrange2D(pts(node,:), p, q); 
                 [~, dN_dx, dN_dy] = lagrange2Dspatial(dN_dxi, dN_deta, nodes_e(:,:,e));
 
-                sigma = computeStress(D,dN_dx,dN_dy,d,n_dof,e,IEN,n_en);
+                sigma = computeStress(D,dN_dx,dN_dy,d,ndof,e,IEN,n_en);
                 von_mises = sqrt(sigma(1)^2 - sigma(1)*sigma(2) + sigma(2)^2 + 3*sigma(3)^2);
                 
                 loc = LM_plot(e,node)
@@ -149,7 +149,7 @@ switch plot_desired
                 [N, dN_dxi, dN_deta] = lagrange2D(pts(node,:), p, q); 
                 [~, dN_dx, dN_dy] = lagrange2Dspatial(dN_dxi, dN_deta, nodes_e(:,:,e));
 
-                sigma = computeStress(D,dN_dx,dN_dy,d,n_dof,e,IEN,n_en);
+                sigma = computeStress(D,dN_dx,dN_dy,d,ndof,e,IEN,n_en);
                 
                 loc = LM_plot(e,node)
                 
@@ -202,7 +202,7 @@ D = buildD(E, nu);
                 [N, dN_dxi, dN_deta] = lagrange2D(pts(node,:), p, q); 
                 [~, dN_dx, dN_dy] = lagrange2Dspatial(dN_dxi, dN_deta, nodes_e(:,:,e));
 
-                sigma = computeStress(D,dN_dx,dN_dy,d,n_dof,e,IEN,n_en);
+                sigma = computeStress(D,dN_dx,dN_dy,d,ndof,e,IEN,n_en);
                 
                 loc = LM_plot(e,node)
                 
@@ -254,7 +254,7 @@ D = buildD(E, nu);
                 [N, dN_dxi, dN_deta] = lagrange2D(pts(node,:), p, q); 
                 [~, dN_dx, dN_dy] = lagrange2Dspatial(dN_dxi, dN_deta, nodes_e(:,:,e));
 
-                sigma = computeStress(D,dN_dx,dN_dy,d,n_dof,e,IEN,n_en);
+                sigma = computeStress(D,dN_dx,dN_dy,d,ndof,e,IEN,n_en);
                 
                 loc = LM_plot(e,node)
                 
@@ -272,8 +272,8 @@ D = buildD(E, nu);
         
     case 7 %total disp
         for i = 1:n_loop
-            x_displacement(i) = d((i-1)*n_dof+1);
-            y_displacement(i) = d((i-1)*n_dof+2);
+            x_displacement(i) = d((i-1)*ndof+1);
+            y_displacement(i) = d((i-1)*ndof+2);
         end
         x = mesh(:,1);
         y = mesh(:,2);
@@ -289,6 +289,7 @@ D = buildD(E, nu);
         end
         xlabel('X Position')
         ylabel('Y Position')
+        
         
 end
 

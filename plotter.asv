@@ -1,4 +1,4 @@
-function [  ] = plotter( d,mesh,plot_desired,m,n,n_dof,LM_plot,E,nu,n_en,p,q,nodes_e,IEN )
+function plotter(d,mesh,plot_desired,m,n,ndof,LM_plot,E,nu,n_en,p,q,nodes_e,IEN)
 %This function plots the solution
 
 %what value needs to be plotted. 1 = x displacement, 2 = y displacement, 
@@ -60,8 +60,19 @@ switch plot_desired
     case 3 %von mises
         D = buildD(E, nu);
         
+<<<<<<< HEAD
         nnx = m+1+m*(p-1);
         nny = n+1+n*(q-1);
+=======
+%         nnx = m+1+m*(p-1);
+%         nny = n+1+n*(q-1);
+        
+        x_locations = mesh(1:(m+1),1);
+        y_locations = zeros(n+1,1);
+        for j = 1:(n+1)
+            y_locations(j) = mesh((j-1)*(m+1)+1,2);
+        end
+>>>>>>> 23e36e2cdc9836261783ab337e1a16f501422c7a
         
         x_locations = zeros(nnx,nny);
         y_locations = zeros(nnx,nny);
@@ -93,7 +104,7 @@ switch plot_desired
                 [N, dN_dxi, dN_deta] = lagrange2D(pts(node,:), p, q); 
                 [~, dN_dx, dN_dy] = lagrange2Dspatial(dN_dxi, dN_deta, nodes_e(:,:,e));
 
-                sigma = computeStress(D,dN_dx,dN_dy,d,n_dof,e,IEN,n_en);
+                sigma = computeStress(D,dN_dx,dN_dy,d,ndof,e,IEN,n_en);
                 von_mises = sqrt(sigma(1)^2 - sigma(1)*sigma(2) + sigma(2)^2 + 3*sigma(3)^2);
                 
                 loc = LM_plot(e,node)
@@ -149,7 +160,7 @@ switch plot_desired
                 [N, dN_dxi, dN_deta] = lagrange2D(pts(node,:), p, q); 
                 [~, dN_dx, dN_dy] = lagrange2Dspatial(dN_dxi, dN_deta, nodes_e(:,:,e));
 
-                sigma = computeStress(D,dN_dx,dN_dy,d,n_dof,e,IEN,n_en);
+                sigma = computeStress(D,dN_dx,dN_dy,d,ndof,e,IEN,n_en);
                 
                 loc = LM_plot(e,node)
                 
@@ -202,7 +213,7 @@ D = buildD(E, nu);
                 [N, dN_dxi, dN_deta] = lagrange2D(pts(node,:), p, q); 
                 [~, dN_dx, dN_dy] = lagrange2Dspatial(dN_dxi, dN_deta, nodes_e(:,:,e));
 
-                sigma = computeStress(D,dN_dx,dN_dy,d,n_dof,e,IEN,n_en);
+                sigma = computeStress(D,dN_dx,dN_dy,d,ndof,e,IEN,n_en);
                 
                 loc = LM_plot(e,node)
                 
@@ -254,7 +265,7 @@ D = buildD(E, nu);
                 [N, dN_dxi, dN_deta] = lagrange2D(pts(node,:), p, q); 
                 [~, dN_dx, dN_dy] = lagrange2Dspatial(dN_dxi, dN_deta, nodes_e(:,:,e));
 
-                sigma = computeStress(D,dN_dx,dN_dy,d,n_dof,e,IEN,n_en);
+                sigma = computeStress(D,dN_dx,dN_dy,d,ndof,e,IEN,n_en);
                 
                 loc = LM_plot(e,node)
                 
@@ -266,14 +277,14 @@ D = buildD(E, nu);
                 z(row,column) = sigma(3);
             end
         end
-        [C,h] = contourf(x_locations,y_locations,z);
+        [C,h] = surf(x_locations,y_locations,z);
         clabel(C,h)
         
         
     case 7 %total disp
         for i = 1:n_loop
-            x_displacement(i) = d((i-1)*n_dof+1);
-            y_displacement(i) = d((i-1)*n_dof+2);
+            x_displacement(i) = d((i-1)*ndof+1);
+            y_displacement(i) = d((i-1)*ndof+2);
         end
         x = mesh(:,1);
         y = mesh(:,2);
@@ -289,6 +300,7 @@ D = buildD(E, nu);
         end
         xlabel('X Position')
         ylabel('Y Position')
+        
         
 end
 
