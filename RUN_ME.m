@@ -11,7 +11,7 @@ epsilon = 1e-12;
 problemNumber = 1;
 
 %displacement amount on right face
-displacement = [1 0]; %x y
+displacement = [.6 0]; %x y
 h = [0 0]; %x y
 body_force = [0 0];
 
