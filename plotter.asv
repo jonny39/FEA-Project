@@ -60,13 +60,12 @@ switch plot_desired
     case 3 %von mises
         D = buildD(E, nu);
         
-        x_locations = mesh(1:(m+1),1);
-        y_locations = zeros(n+1,1);
-        for j = 1:(n+1)
-            y_locations(j) = mesh((j-1)*(m+1)+1,2);
-        end
+        nnx = m+1+m*(p-1);
+        nny = n+1+n*(q-1);
         
-        z = zeros(length(y_locations),length(x_locations));
+        x_locations = zeros(nnx,nny);
+        y_locations = zeros(nnx,nny);
+        z = zeros(nnx,nny);
         
         for e = 1:size(LM_plot,1)
             for node = 1:n_en
@@ -105,6 +104,8 @@ switch plot_desired
                 row = floor((loc-1)/(1+m))+1
                 
                 z(row,column) = von_mises;
+                x_locations(row,column) = mesh(loc,1);
+                y_location = mesh(loc,2)
             end
         end
         [C,h] = contourf(x_locations,y_locations,z);
