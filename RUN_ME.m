@@ -51,12 +51,7 @@ end
 %what value needs to be plotted. 1 = x displacement, 2 = y displacement, 
 %3 = von mises stress, 4 = sigma x, 5 = sigma y, 6 = torsional stress
 %7 = node locations
-<<<<<<< HEAD
 plot_desired = 3;
-=======
-plot_desired = 6;
->>>>>>> 23e36e2cdc9836261783ab337e1a16f501422c7a
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
