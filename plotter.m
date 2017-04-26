@@ -110,7 +110,6 @@ switch plot_desired
         end
         [C,h] = contourf(x_locations,y_locations,z);
         clabel(C,h)
-        keyboard
         
     case 4 %sigma x
         D = buildD(E, nu);

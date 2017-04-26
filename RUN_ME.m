@@ -11,16 +11,24 @@ epsilon = 1e-12;
 problemNumber = 1;
 
 %displacement amount on right face
+<<<<<<< HEAD
 displacement = [.6 0]; %x y
+=======
+displacement = [1 0]; %x,y or r,theta 
+>>>>>>> 182670d8d55a7e1b4dd00797f1d1f93d75cb867b
 h = [0 0]; %x y
 body_force = [0 0];
 
 %element type
+<<<<<<< HEAD
+elementType = 'rad'; %'rad' for radial, 'rect' for rectilinear
+=======
 if problemNumber ~= 3
     elementType = 'rect';
 else
     elementType = 'rad'; %'rad' for radial, 'rect' for rectilinear
 end
+>>>>>>> 36723a7e335dcb7ad364b2532543796706b578c8
 
 %basis function order
 p = 1;
