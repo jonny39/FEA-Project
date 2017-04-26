@@ -8,11 +8,16 @@ format compact
 epsilon = 1e-12;
 
 %problem number
-problemNumber = 1;
+problemNumber = 2;
 
 %displacement amount on right face
+<<<<<<< HEAD
 displacement = [0.5 0]; %x,y or r,theta 
 h = [0.1 0]; %x y
+=======
+displacement = [0 0]; %x y
+h = [1000 0]; %x y
+>>>>>>> 93f0fd95a12efecb7d3f29b64f6dcd402edd2393
 body_force = [0 0];
 
 %element type
@@ -23,19 +28,23 @@ else
 end
 
 %basis function order
-p = 1;
+p = 2;
 q = p;
 
 %material parameters
+<<<<<<< HEAD
 E = 1;
+=======
+E = 1e7;
+>>>>>>> 93f0fd95a12efecb7d3f29b64f6dcd402edd2393
 nu = 0.3;
 n_dof = 2;
 
 %define mesh geometry
 %for radial nodes, n is radial, m is circumfirential
 %for rectangular nodes, n is horizontal, m is vertical
-m = 4;
-n = 4;
+m = 10;
+n = 10;
 
 he_n = 1/n;
 he_m = 1/m;
