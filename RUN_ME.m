@@ -11,12 +11,12 @@ epsilon = 1e-12;
 problemNumber = 1;
 
 %displacement amount on right face
-displacement = [1 0]; %x y
+displacement = [1 0]; %x,y or r,theta 
 h = [0 0]; %x y
 body_force = [0 0];
 
 %element type
-elementType = 'rect'; %'rad' for radial, 'rect' for rectilinear
+elementType = 'rad'; %'rad' for radial, 'rect' for rectilinear
 
 %basis function order
 p = 1;
@@ -51,7 +51,7 @@ end
 %what value needs to be plotted. 1 = x displacement, 2 = y displacement, 
 %3 = von mises stress, 4 = sigma x, 5 = sigma y, 6 = torsional stress
 %7 = node locations
-plot_desired = 3;
+plot_desired = 7;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
