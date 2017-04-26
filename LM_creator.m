@@ -23,6 +23,8 @@ for node = 1:size(mesh,1)
         constraint(node,:) = 0;  %constrain all left nodes in all directions      
     end
     
+%     constraint(node,2) = 0; %constrain all nodes in y
+    
     if problemNumber == 1
         if displacement(1) ~= 0 
             if mesh(node,1) == geoLimit

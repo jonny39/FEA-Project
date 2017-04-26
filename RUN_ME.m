@@ -11,24 +11,16 @@ epsilon = 1e-12;
 problemNumber = 1;
 
 %displacement amount on right face
-<<<<<<< HEAD
-displacement = [.6 0]; %x y
-=======
-displacement = [1 0]; %x,y or r,theta 
->>>>>>> 182670d8d55a7e1b4dd00797f1d1f93d75cb867b
-h = [0 0]; %x y
+displacement = [0.5 0]; %x,y or r,theta 
+h = [0.1 0]; %x y
 body_force = [0 0];
 
 %element type
-<<<<<<< HEAD
-elementType = 'rad'; %'rad' for radial, 'rect' for rectilinear
-=======
 if problemNumber ~= 3
     elementType = 'rect';
 else
     elementType = 'rad'; %'rad' for radial, 'rect' for rectilinear
 end
->>>>>>> 36723a7e335dcb7ad364b2532543796706b578c8
 
 %basis function order
 p = 1;
@@ -36,7 +28,7 @@ q = p;
 
 %material parameters
 E = 1;
-nu = .3;
+nu = 0.3;
 n_dof = 2;
 
 %define mesh geometry
@@ -63,7 +55,7 @@ end
 %what value needs to be plotted. 1 = x displacement, 2 = y displacement, 
 %3 = von mises stress, 4 = sigma x, 5 = sigma y, 6 = torsional stress
 %7 = node locations
-plot_desired = 7;
+plot_desired = 1;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

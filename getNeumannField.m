@@ -21,7 +21,7 @@ elseif problemNumber == 3
         
         x = [-1 1];
         v = [theta(1) theta(size(theta,1))];
-        vq = interp1(x,v,x(2));
+        vq = interp1(x,v,xi(2));
 
         if radius <= geoLimit
             h_applied(1) = cos(vq)*sqrt(h(1)^2+h(2)^2);

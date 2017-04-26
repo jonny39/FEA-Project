@@ -45,13 +45,19 @@ K = spalloc(max(max(max(LM))),max(max(max(LM))),max(max(max(LM)))*8*p);
                             Q = LM(e, b, j);
                             s = (b-1)*n_dof + j;
                             if Q > 0
+%                                 r
+%                                 s
                                 K(P, Q) = K(P, Q) + k_e(r, s);
+%                                 keyboard
+
                             end
                         end
                     end
                 end
             end
         end
+%         K
+%         keyboard
     end
 end
 

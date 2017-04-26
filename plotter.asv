@@ -60,68 +60,48 @@ switch plot_desired
     case 3 %von mises
         D = buildD(E, nu);
         
-<<<<<<< HEAD
-        nnx = m+1+m*(p-1);
-        nny = n+1+n*(q-1);
-=======
-%         nnx = m+1+m*(p-1);
-%         nny = n+1+n*(q-1);
+        n_int = ceil((p+1)/2);
         
-        x_locations = mesh(1:(m+1),1);
-        y_locations = zeros(n+1,1);
-        for j = 1:(n+1)
-            y_locations(j) = mesh((j-1)*(m+1)+1,2);
-        end
->>>>>>> 23e36e2cdc9836261783ab337e1a16f501422c7a
+        x_locations = zeros(size(LM_plot,1),n_int^2);
+        y_locations = zeros(size(LM_plot,1),n_int^2);
+        z = zeros(size(LM_plot,1),n_int^2);
         
-        x_locations = zeros(nnx,nny);
-        y_locations = zeros(nnx,nny);
-        z = zeros(nnx,nny);
+        [pts, W] = guassQuad(n_int);
         
         for e = 1:size(LM_plot,1)
-            for node = 1:n_en
-                
-                switch p
-                    case 1
-                        pts = [-1 -1;
-                               1 -1;
-                               -1 1;
-                               1 1];
-                    case 2
-                        pts = [-1 -1;
-                                0 -1;
-                                1 -1;
-                                -1 0;
-                                0 0;
-                                1 0;
-                                -1 1;
-                                0 1;
-                                1 1];
-                end
+            for igpt = 1:n_int^2
 
-                
-                
-                [N, dN_dxi, dN_deta] = lagrange2D(pts(node,:), p, q); 
+                [N, dN_dxi, dN_deta] = lagrange2D(pts(igpt,:), p, q); 
                 [~, dN_dx, dN_dy] = lagrange2Dspatial(dN_dxi, dN_deta, nodes_e(:,:,e));
 
                 sigma = computeStress(D,dN_dx,dN_dy,d,ndof,e,IEN,n_en);
                 von_mises = sqrt(sigma(1)^2 - sigma(1)*sigma(2) + sigma(2)^2 + 3*sigma(3)^2);
                 
-                loc = LM_plot(e,node)
-                
-                %what column it's on
-                column = mod(loc-1,(m+1))+1
-                %what row it's on
-                row = floor((loc-1)/(1+m))+1
-                
-                z(row,column) = von_mises;
-                x_locations(row,column) = mesh(loc,1);
-                y_location = mesh(loc,2)
+                x = [-1 1];
+                if p == 1
+                    nodes_x = [nodes_e(1,1,e) nodes_e(2,1,e)];
+                    nodes_y = [nodes_e(1,2,e) nodes_e(3,2,e)];
+                elseif p == 2
+                    nodes_x = [nodes_e(1,1,e) nodes_e(3,1,e)];
+                    nodes_y = [nodes_e(1,2,e) nodes_e(3,2,e)];
+                end
+                x_loc = interp1(x,nodes_x,pts(igpt,1));
+                y_loc = interp1(x,nodes_y,pts(igpt,2));
+
+                z(e,igpt) = von_mises;
+                x_locations(e,igpt) = x_loc;
+                y_locations(e,igpt) = y_loc;
+
             end
+        end
+        
+        if n_int == 1
+            z = [z z];
+            x_locations= [x_locations x_locations*0];
+            y_locations= [y_locations y_locations*0];
         end
         [C,h] = contourf(x_locations,y_locations,z);
         clabel(C,h)
-        keyboard
         
     case 4 %sigma x
         D = buildD(E, nu);
@@ -277,7 +257,7 @@ D = buildD(E, nu);
                 z(row,column) = sigma(3);
             end
         end
-        [C,h] = surf(x_locations,y_locations,z);
+        [C,h] = contourf(x_locations,y_locations,z);
         clabel(C,h)
         
         
