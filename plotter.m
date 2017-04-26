@@ -1,4 +1,4 @@
-function [  ] = plotter( d,mesh,plot_desired,m,n,n_dof,LM_plot,E,nu,n_en,p,q,nodes_e,IEN )
+function plotter( d,mesh,plot_desired,m,n,n_dof,LM_plot,E,nu,n_en,p,q,nodes_e,IEN )
 %This function plots the solution
 
 %what value needs to be plotted. 1 = x displacement, 2 = y displacement, 

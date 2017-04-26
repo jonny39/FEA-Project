@@ -8,19 +8,11 @@ format compact
 epsilon = 1e-12;
 
 %problem number
-<<<<<<< HEAD
 problemNumber = 1;
 
 %displacement amount on right face
 displacement = [1 0]; %x y
 h = [.1 0]; %x y
-=======
-problemNumber =  3;
-
-%displacement amount on right face
-displacement = [10 0]; %x y
-h = [0.001 0]; %x y
->>>>>>> e5505102be0c55ee291e816801c865278cbe63b9
 body_force = [0 0];
 
 %element type
